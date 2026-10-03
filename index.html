@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Parque Zênite — Matemática 9º ano | Avaliação Mensal 2</title>
+<style>
+:root{
+  --noite:#17132a; --noite2:#201b3a; --noite3:#2a2350;
+  --neon:#43e97b; --neon2:#6cf59a; --laranja:#ffa63d; --rosa:#ff5d8f; --ciano:#54d6ec;
+  --texto:#edeaf7; --texto2:#aba6c7; --linha:#3a3360; --verm:#ff6b6b; --verde:#43e97b;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--noite);color:var(--texto);
+  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+  font-size:17.5px;line-height:1.7;
+  background-image:radial-gradient(circle at 12% 6%,rgba(67,233,123,.12),transparent 45%),radial-gradient(circle at 88% 26%,rgba(255,93,143,.10),transparent 45%),radial-gradient(circle at 50% 80%,rgba(255,166,61,.07),transparent 45%);
+  background-attachment:fixed}
+.wrap{max-width:1000px;margin:0 auto;padding:0 18px 80px}
+header.capa{margin:30px 0 8px;padding:34px 26px;border:1px solid var(--linha);border-radius:18px;
+  background:linear-gradient(145deg,var(--noite2),var(--noite3));position:relative;overflow:hidden;text-align:center}
+.kicker{font-size:12.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--neon);margin:0 0 10px;font-weight:700}
+header.capa h1{margin:0;font-size:clamp(32px,7vw,56px);line-height:1.05;letter-spacing:-.015em}
+header.capa h1 span{color:var(--laranja)}
+.linhafina{margin:16px auto 0;color:var(--texto2);font-size:16px;max-width:660px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 0}
+.chip{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--linha);background:var(--noite);padding:6px 13px;border-radius:999px;color:var(--texto2)}
+.chip.prova{border-color:var(--rosa);color:var(--rosa)}
+h2.sec{border-bottom:2px solid var(--linha);margin:40px 0 10px;padding-bottom:9px;font-size:26px}
+h2.sec small{display:block;font-size:14.5px;font-weight:400;color:var(--texto2);margin-top:6px}
+.cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin:18px 0 0}
+.card{display:block;text-decoration:none;color:var(--texto);border:1px solid var(--linha);border-radius:16px;
+  background:var(--noite2);padding:22px 20px;transition:.16s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-4px);border-color:var(--neon)}
+.card .ordem{position:absolute;top:0;right:0;font-size:11.5px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;padding:6px 12px;border-radius:0 15px 0 12px;background:var(--noite3);color:var(--texto2)}
+.card .ic{font-size:36px;line-height:1;display:block;margin:0 0 12px}
+.card h3{margin:0 0 8px;font-size:21px}
+.card p{margin:0;font-size:15px;color:var(--texto2);line-height:1.5}
+.card .meta{display:block;margin-top:12px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.card.c1{border-top:4px solid var(--neon)} .card.c1 .meta{color:var(--neon)}
+.card.c2{border-top:4px solid var(--ciano)} .card.c2 .meta{color:var(--ciano)}
+.card.c3{border-top:4px solid var(--rosa)} .card.c3 .meta{color:var(--rosa)}
+.card.extra{border-top:4px solid var(--laranja)} .card.extra .meta{color:var(--laranja)}
+ol.comousar{margin:18px 0 0;padding-left:24px}
+ol.comousar li{margin-bottom:11px}
+ol.comousar b{color:var(--neon)}
+.escopo{border:1px solid var(--linha);background:var(--noite2);border-left:4px solid var(--ciano);
+  border-radius:0 12px 12px 0;padding:16px 18px;margin:18px 0 0;font-size:16.5px}
+.escopo b{color:var(--ciano)}
+.rel{border:2px solid var(--neon);background:rgba(67,233,123,.06);border-radius:16px;padding:22px;margin:20px 0 0}
+.rel h3{margin:0 0 8px;font-size:22px;color:var(--neon)}
+.rel p.exp{font-size:15.5px;color:var(--texto2);margin:0 0 16px}
+.trava{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=text]{font-family:"Courier New",monospace;font-size:17px;padding:11px 12px;border-radius:9px;
+  border:1px solid var(--linha);background:#0e0b1c;color:var(--texto);width:200px;text-transform:uppercase}
+input[type=text]:focus{outline:2px solid var(--neon)}
+button{font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+  border:1px solid var(--linha);background:var(--noite3);color:var(--texto);padding:11px 16px;border-radius:9px}
+button:hover{border-color:var(--neon)}
+button.principal{background:var(--neon);color:#09301c;border-color:var(--neon);font-weight:800}
+.aviso{font-size:14px;color:var(--laranja);margin:10px 0 0;min-height:18px}
+.relconteudo{display:none;margin-top:20px}
+.linhas{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.lin{border:1px solid var(--linha);background:var(--noite2);border-radius:12px;padding:15px 16px}
+.lin h4{margin:0 0 8px;font-size:16px}
+.lin .big{font-size:30px;font-weight:800;color:var(--neon2);line-height:1.1;margin:0}
+.lin .sub{font-size:14px;color:var(--texto2);margin:6px 0 0}
+.lista{border:1px solid var(--verm);background:rgba(255,107,107,.07);border-radius:12px;padding:16px 18px;margin-top:16px}
+.lista h4{margin:0 0 8px;color:var(--verm);font-size:17px}
+.lista ul{margin:0;padding-left:20px}
+.lista li{margin-bottom:6px;font-size:15.5px}
+.okbox{border:1px solid var(--verde);background:rgba(67,233,123,.07);border-radius:12px;padding:16px 18px;margin-top:16px;font-size:16px}
+.okbox b{color:var(--verde)}
+.rel .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.rodape{border-top:1px solid var(--linha);margin-top:40px;padding-top:18px;font-size:14px;color:var(--texto2);text-align:center}
+.overlay{position:fixed;inset:0;background:rgba(6,6,14,.78);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.on{display:flex}
+.modal{background:var(--noite2);border:1px solid var(--neon);max-width:440px;width:100%;padding:24px;border-radius:14px}
+.modal h3{margin:0 0 10px}.modal p{margin:0 0 18px}
+.modal .acoes{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+@media(max-width:620px){body{font-size:16.5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="capa">
+  <p class="kicker">Kit de estudos · Matemática · 9º ano</p>
+  <h1>Parque <span>Zênite</span></h1>
+  <p class="linhafina">Avaliação Mensal 2 (3º trimestre). Uma noite no parque de diversões onde cada tema vira uma atração: dinheiro (porcentagem e juros), o painel do público (estatística) e a roda-gigante (ângulos e quadriláteros na circunferência).</p>
+  <div class="chips">
+    <span class="chip">Livro Callis Matemática 9</span>
+    <span class="chip">Frente A: pp. 110–143, 163–164</span>
+    <span class="chip">Frente B: pp. 70–101</span>
+    <span class="chip prova">Avaliação Mensal 2</span>
+  </div>
+</header>
+
+<h2 class="sec">🎢 As três atrações<small>Siga nesta ordem — cada uma prepara a seguinte.</small></h2>
+<div class="cards">
+  <a class="card c1" href="leitura-estendida.html">
+    <span class="ordem">1º</span>
+    <span class="ic">📖</span>
+    <h3>Leitura Estendida</h3>
+    <p>6 atrações com explicação, exemplos resolvidos e 3 perguntas para escrever e resolver em cada uma. No fim: as 10 pegadinhas e o mapa de cobertura.</p>
+    <span class="meta">Comece por aqui</span>
+  </a>
+  <a class="card c2" href="resumo.html">
+    <span class="ordem">2º</span>
+    <span class="ic">🗺️</span>
+    <h3>Resumo</h3>
+    <p>Todas as fórmulas, a tabela juros simples × composto, fichas de ângulos para virar, dicas em post-it, pegadinhas e glossário.</p>
+    <span class="meta">Fecha as lacunas</span>
+  </a>
+  <a class="card c3" href="simulado.html">
+    <span class="ordem">3º</span>
+    <span class="ic">📝</span>
+    <h3>Simulado</h3>
+    <p>25 questões no estilo vestibular: somatório, números romanos e objetivas. É o ensaio geral da prova (cada questão vale 0,4).</p>
+    <span class="meta">Código SIM-XX-YY</span>
+  </a>
+</div>
+
+<h2 class="sec">📄 Extra para imprimir<small>Uma folha de regras para deixar na mesa de estudo.</small></h2>
+<div class="cards">
+  <a class="card extra" href="mapa-mental.html">
+    <span class="ordem">PDF</span>
+    <span class="ic">🧠</span>
+    <h3>Mapa Mental (1 folha A4)</h3>
+    <p>Todas as fórmulas organizadas por cor, com os macetes de cada tema. Abre o PDF na tela, com botão para baixar e imprimir em paisagem.</p>
+    <span class="meta">Folha de regras</span>
+  </a>
+</div>
+
+<h2 class="sec">🧭 Como usar este material<small>Dá para fazer tudo num dia, mas rende mais em dois.</small></h2>
+<ol class="comousar">
+  <li>Abra a <b>Leitura Estendida</b> e vá atração por atração. <b>Resolva as contas</b> com a sua própria cabeça: se a resposta sair copiada do texto, o material pede para reescrever — é refazendo a conta que a Matemática gruda.</li>
+  <li>Vá ao <b>Resumo</b> para fixar as fórmulas e comparar juros simples × composto. Vire as fichas de ângulos e guarde os post-its de dica.</li>
+  <li>Encare o <b>Simulado</b> por último, sem consulta, como se fosse a prova. Só abra o gabarito depois de terminar tudo.</li>
+  <li>Quer imprimir? Abra o <b>Mapa Mental</b>, clique em “Baixar o PDF” e deixe a folha de regras à vista enquanto estuda.</li>
+  <li>Voltou aqui? Role até o <b>Relatório para os pais</b> e veja como foi o estudo inteiro.</li>
+</ol>
+
+<div class="escopo">
+  <b>O que cai:</b> <b>Frente A</b> — porcentagem (razão centesimal, fator de aumento e desconto, sucessivos); juros simples (J = C·i·t) e juros compostos (M = C·(1+i)<sup>t</sup>); estatística (população e amostra, frequência absoluta e relativa, leitura de tabelas e gráficos, ângulo do setor). <b>Frente B</b> — ângulos na circunferência (central × inscrito, arco, triângulo no diâmetro) e quadriláteros inscritíveis (ângulos opostos suplementares) e circunscritíveis (Teorema de Pitot).
+</div>
+
+<h2 class="sec">📊 Relatório para os pais<small>Protegido por código, para a criança fazer o estudo antes.</small></h2>
+<section class="rel">
+  <h3>🔒 Abrir o relatório</h3>
+  <p class="exp">Digite o código do Simulado (<b>SIM-XX-YY</b>) ou o código fixo da família: <b>PAIS-77</b>.</p>
+  <div class="trava">
+    <input type="text" id="inCod" placeholder="PAIS-77" maxlength="9">
+    <button class="principal" id="btAbrir">Abrir relatório</button>
+  </div>
+  <p class="aviso" id="avCod"></p>
+
+  <div class="relconteudo" id="relconteudo">
+    <div class="linhas" id="linhas"></div>
+    <div id="pendencias"></div>
+    <div class="btns">
+      <button id="btExportar">📥 Exportar relatório (.json)</button>
+      <button id="btAtualizar">🔄 Atualizar</button>
+    </div>
+  </div>
+</section>
+
+<p class="rodape">Kit de estudos “Parque Zênite” · Matemática, 9º ano · Avaliação Mensal 2 (3º trimestre) · Livro Callis Matemática 9, Frente A (pp. 110–143, 163–164) e Frente B (pp. 70–101).</p>
+
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h3 id="mTit">Aviso</h3>
+    <p id="mTxt"></p>
+    <div class="acoes"><button class="principal" id="mSim">Entendi</button></div>
+  </div>
+</div>
+
+<script>
+var K={lg:'mat9_mensal2_leitura_v1',rs:'mat9_mensal2_resumo_v1',sm:'mat9_mensal2_simulado_v1'};
+function leKey(k){try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return {}}}
+function aviso(t,msg){
+  document.getElementById('mTit').textContent=t;
+  document.getElementById('mTxt').textContent=msg;
+  var ov=document.getElementById('overlay'); ov.classList.add('on');
+  document.getElementById('mSim').onclick=function(){ov.classList.remove('on');};
+}
+/* rotulos do checklist da leitura estendida, para a lista de pendencias */
+var PONTOS=[
+[["que o fator 1,20 representa um AUMENTO de 20% (1 + 20/100)","que o fator 0,85 representa um DESCONTO de 15% (1 − 15/100)","que acima de 1 é aumento e abaixo de 1 é desconto"],
+ ["que a conta é 50 × 1,10 × 1,20 = R$ 66","que um aumento único de 30% daria R$ 65, menos que R$ 66","que aumentos sucessivos se multiplicam, não se somam"],
+ ["criei um problema MEU com dois descontos (ou aumentos) seguidos","multipliquei os fatores em vez de somar as porcentagens","mostrei o resultado final da conta"]],
+[["que os juros simples incidem SEMPRE sobre o capital inicial","que por isso o juro é igual em todos os períodos","que o montante é M = C·(1 + i·t)"],
+ ["que J = 500 × 0,03 × 4 = R$ 60","que o montante M = 500 + 60 = R$ 560"],
+ ["que a taxa e o tempo precisam estar na MESMA unidade","dei um exemplo de erro (taxa ao mês com tempo em anos, ou vice-versa)"]],
+[["que no simples o juro cai sempre sobre o capital inicial","que no composto o juro cai sobre o montante do período anterior (juros sobre juros)","que a fórmula do composto é M = C·(1 + i)^t"],
+ ["que M = 2 000 × (1,1)² = R$ 2 420 e J = R$ 420","que no juro simples o juro seria R$ 400 (2000 × 0,1 × 2)","que o composto rendeu mais que o simples"],
+ ["que o juro de um período entra na base de cálculo do próximo","que por isso o valor cresce cada vez mais rápido (bola de neve)"]],
+[["que a frequência absoluta (fi) é QUANTAS vezes o dado aparece","que a frequência relativa (fr) é fi ÷ n, em geral em porcentagem","que a soma das fr é 100% e a soma das fi é n"],
+ ["que usei ângulo do setor = fr × 360°","que 0,20 × 360° = 72°"],
+ ["que multipliquei a porcentagem pelo total n","que 35% de 200 = 70"]],
+[["que o ângulo inscrito vale a METADE do arco","que o ângulo central é IGUAL ao arco","que por isso o inscrito é metade do central"],
+ ["que o ângulo inscrito que enxerga o arco de 100° vale 50°","que o ângulo central do mesmo arco vale 100°"],
+ ["que o lado no diâmetro corresponde a um arco de 180°","que o ângulo inscrito é metade disso, ou seja, 90° (triângulo retângulo)"]],
+[["que o inscritível tem os 4 VÉRTICES na circunferência (ângulos opostos somam 180°)","que o circunscritível tem os 4 LADOS tangentes (soma de lados opostos iguais, Pitot)"],
+ ["que o oposto de 110° é 70° (somam 180°)","que o oposto de 95° é 85° (somam 180°)"],
+ ["que usei AB + CD = BC + AD","que 7 + 6 = 5 + AD, logo AD = 8"]]
+];
+var TITULOS=["Bilheteria: porcentagem, aumento e desconto","Carnê do Parque: juros simples",
+"Cofre que Cresce: juros compostos","Painel do Público: estatística e gráficos",
+"Roda-Gigante: ângulo central e inscrito","Cabines em Quadra: quadriláteros na circunferência"];
+
+function monta(){
+  var lg=leKey(K.lg),rs=leKey(K.rs),sm=leKey(K.sm);
+  var blocosFeitos=0; for(var i=1;i<=6;i++){if(lg.feito&&lg.feito[i])blocosFeitos++;}
+  var l=document.getElementById('linhas'); l.innerHTML='';
+  function cardInfo(tit,big,sub){
+    var d=document.createElement('div'); d.className='lin';
+    d.innerHTML='<h4>'+tit+'</h4><p class="big">'+big+'</p><p class="sub">'+sub+'</p>';
+    l.appendChild(d);
+  }
+  cardInfo('📖 Leitura Estendida',blocosFeitos+' / 6',blocosFeitos===6?'Leitura completa. Última vez: '+(lg.quando||'—'):'Atrações concluídas. Última vez: '+(lg.quando||'ainda não começou'));
+  cardInfo('🗺️ Resumo',(rs.rolagem||0)+'%','Quanto do resumo foi percorrido na tela. Última vez: '+(rs.quando||'ainda não abriu'));
+  cardInfo('📝 Simulado',(sm.enviado?sm.acertos+' / 25':'—'),sm.enviado?('Código '+(sm.codigo||'—')+' · nota '+(Math.round((sm.acertos||0)*0.4*10)/10).toString().replace('.',',')+' de 10,0'):'Ainda não enviou o Simulado.');
+
+  var pend=[],vermelhas=0,naos=0;
+  for(var b=1;b<=6;b++){
+    if(!(lg.feito&&lg.feito[b]))continue;
+    for(var j=1;j<=3;j++){
+      var k=b+'-'+j;
+      if(lg.transcrita&&lg.transcrita[k]){vermelhas++;
+        pend.push('Atração '+b+' (“'+TITULOS[b-1]+'”), pergunta '+j+': a resposta continuou igual ao texto — vale pedir para ela explicar/refazer com as próprias palavras.');}
+      var pts=PONTOS[b-1][j-1]||[],c=(lg.chk&&lg.chk[k])||[];
+      for(var p=0;p<pts.length;p++){
+        if(c[p]===0){naos++;
+          pend.push('Atração '+b+', pergunta '+j+': ela marcou que a resposta NÃO disse — “'+pts[p]+'”.');}
+      }
+    }
+  }
+  var box=document.getElementById('pendencias'); box.innerHTML='';
+  if(pend.length){
+    var d=document.createElement('div'); d.className='lista';
+    var h='<h4>🔁 Pontos para revisar antes da prova ('+vermelhas+' resposta(s) copiada(s) e '+naos+' ponto(s) em falta)</h4><ul>';
+    pend.forEach(function(t){h+='<li>'+t+'</li>';});
+    d.innerHTML=h+'</ul>'; box.appendChild(d);
+  }else{
+    var o=document.createElement('div'); o.className='okbox';
+    o.innerHTML=blocosFeitos>0?'<b>Nenhum ponto pendente até aqui.</b> As respostas conferidas na Leitura Estendida saíram com palavras próprias e o checklist fechou tudo em “sim”.':'<b>O estudo ainda não começou.</b> Assim que ela abrir a Leitura Estendida, os pontos a revisar aparecem aqui.';
+    box.appendChild(o);
+  }
+  window.__rel={leituraEstendida:{atracoesConcluidas:blocosFeitos,de:6,respostasCopiadas:vermelhas,pontosEmFalta:naos,ultimaVez:lg.quando||null},
+    resumo:{rolagemMaxima:(rs.rolagem||0),ultimaVez:rs.quando||null},
+    simulado:{enviado:!!sm.enviado,acertos:sm.enviado?sm.acertos:null,de:25,codigo:sm.codigo||null,gabaritoAberto:!!sm.gabarito},
+    pontosParaRevisar:pend};
+}
+function codigoValido(v){
+  if(v==='PAIS-77')return true;
+  var sm=leKey(K.sm);
+  if(sm.codigo&&v===sm.codigo)return true;
+  return false;
+}
+document.getElementById('btAbrir').onclick=function(){
+  var v=(document.getElementById('inCod').value||'').trim().toUpperCase();
+  if(codigoValido(v)){
+    document.getElementById('relconteudo').style.display='block';
+    document.getElementById('avCod').textContent='';
+    monta();
+    document.getElementById('relconteudo').scrollIntoView({behavior:'smooth',block:'start'});
+  }else{
+    document.getElementById('avCod').textContent='⚠️ Código não confere. Use PAIS-77 ou o código SIM-XX-YY do Simulado.';
+  }
+};
+document.getElementById('btAtualizar').onclick=function(){monta();aviso('Atualizado','O relatório foi recarregado com o progresso mais recente.');};
+document.getElementById('btExportar').onclick=function(){
+  monta();
+  var blob=new Blob([JSON.stringify(window.__rel,null,2)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='relatorio-pais-matematica9-mensal2.json'; a.click();
+};
+document.getElementById('inCod').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('btAbrir').click();});
+</script>
+</body>
+</html>

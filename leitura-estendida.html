@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leitura Estendida — Matemática 9º ano | Parque Zênite (Mensal 2)</title>
+<style>
+:root{
+  --noite:#17132a; --noite2:#201b3a; --noite3:#2a2350;
+  --neon:#43e97b; --neon2:#6cf59a; --laranja:#ffa63d; --rosa:#ff5d8f; --ciano:#54d6ec;
+  --texto:#edeaf7; --texto2:#aba6c7; --linha:#3a3360; --verm:#ff6b6b; --verde:#43e97b;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--noite);color:var(--texto);
+  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+  font-size:17.5px;line-height:1.7;
+  background-image:radial-gradient(circle at 15% 8%,rgba(67,233,123,.09),transparent 45%),radial-gradient(circle at 85% 30%,rgba(255,93,143,.08),transparent 45%),radial-gradient(circle at 50% 85%,rgba(255,166,61,.06),transparent 45%);
+  background-attachment:fixed;}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px 80px}
+a{color:var(--neon)}
+
+header.capa{margin:26px 0 6px;padding:26px 24px;border:1px solid var(--linha);border-radius:14px;
+  background:linear-gradient(145deg,var(--noite2),var(--noite3));position:relative;overflow:hidden}
+header.capa:before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(115deg,rgba(67,233,123,.05) 0 12px,transparent 12px 34px);pointer-events:none}
+.kicker{font-size:12.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--neon);margin:0 0 8px;font-weight:700}
+header.capa h1{margin:0;font-size:clamp(28px,6vw,46px);line-height:1.1;letter-spacing:-.01em}
+header.capa h1 span{color:var(--laranja)}
+.linhafina{margin:14px 0 0;color:var(--texto2);font-size:14.5px}
+.selo{display:inline-block;margin-top:14px;background:var(--neon);color:#09301c;font-weight:800;
+  font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+
+nav.abas{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+nav.abas a{font-size:14px;font-weight:600;text-decoration:none;color:var(--texto);
+  border:1px solid var(--linha);background:var(--noite2);padding:9px 14px;border-radius:999px}
+nav.abas a.atual{background:var(--neon);color:#09301c;border-color:var(--neon)}
+nav.abas a:hover{border-color:var(--neon);color:var(--neon2)}
+nav.abas a.atual:hover{color:#09301c}
+
+.painel{border:1px solid var(--linha);background:var(--noite2);padding:13px 15px;margin:18px 0 22px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-radius:12px}
+.painel .status{font-size:13.5px;color:var(--texto2)}
+.painel .btns{display:flex;gap:7px;flex-wrap:wrap}
+button{font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+  border:1px solid var(--linha);background:var(--noite3);color:var(--texto);padding:9px 14px;border-radius:9px}
+button:hover{border-color:var(--neon);color:var(--neon2)}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.principal{background:var(--neon);color:#09301c;border-color:var(--neon);font-weight:800}
+button.principal:hover{background:var(--neon2);color:#09301c}
+
+.progresso{margin:0 0 24px}
+.barra{height:14px;border:1px solid var(--linha);background:var(--noite2);border-radius:999px;overflow:hidden}
+.barra i{display:block;height:100%;width:0;transition:width .4s;
+  background:repeating-linear-gradient(45deg,var(--neon) 0 10px,#2fa860 10px 20px)}
+.progresso p{font-size:13.5px;margin:8px 0 0;color:var(--texto2)}
+
+.comofunciona{font-size:15px;background:var(--noite2);border:1px solid var(--linha);
+  border-left:4px solid var(--ciano);padding:14px 16px;border-radius:10px;margin:0 0 26px}
+
+/* MAPA DO PARQUE */
+.tl{border:1px solid var(--linha);background:var(--noite2);border-radius:14px;padding:18px 18px 8px;margin:0 0 28px}
+.tl h2{margin:0 0 4px;font-size:22px}
+.tl p.sub{margin:0 0 14px;color:var(--texto2);font-size:14px}
+.trilho{display:flex;gap:10px;overflow-x:auto;padding:6px 2px 16px;scrollbar-width:thin}
+.marco{flex:0 0 auto;width:178px;background:var(--noite3);border:1px solid var(--linha);
+  border-top:3px solid var(--neon);border-radius:10px;padding:11px 12px;cursor:pointer;text-align:left;color:var(--texto)}
+.marco:hover{border-color:var(--neon);transform:translateY(-3px);transition:.15s}
+.marco b{display:block;font-size:19px;color:var(--neon);line-height:1.1;margin-bottom:5px}
+.marco span{display:block;font-size:13px;line-height:1.35;color:var(--texto)}
+.marco em{display:block;font-size:11.5px;color:var(--texto2);margin-top:6px;font-style:normal;letter-spacing:.06em;text-transform:uppercase}
+.marco.laranja{border-top-color:var(--laranja)} .marco.laranja b{color:var(--laranja)}
+.marco.rosa{border-top-color:var(--rosa)} .marco.rosa b{color:var(--rosa)}
+.marco.ciano{border-top-color:var(--ciano)} .marco.ciano b{color:var(--ciano)}
+
+.bloco{border:1px solid var(--linha);background:var(--noite2);margin:0 0 22px;border-radius:14px;overflow:hidden}
+.bloco.trancado{opacity:.55}
+.bloco > .cab{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:15px 20px;
+  border-bottom:1px solid var(--linha);background:var(--noite3)}
+.bloco .num{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#09301c;
+  background:var(--neon);padding:5px 11px;border-radius:999px;white-space:nowrap}
+.bloco h2{margin:0;font-size:22px;line-height:1.25;flex:1 1 220px}
+.bloco .pag{font-size:12.5px;color:var(--texto2);white-space:nowrap}
+.corpo{padding:20px 22px}
+.corpo p{margin:0 0 14px}
+.corpo ul{margin:0 0 14px;padding-left:22px}
+.corpo li{margin-bottom:8px}
+.ex{background:var(--noite3);border-left:4px solid var(--laranja);padding:12px 15px;margin:0 0 14px;border-radius:0 9px 9px 0;font-size:16.5px}
+.ex b{color:var(--laranja)}
+.olho{background:rgba(84,214,236,.08);border:1px solid rgba(84,214,236,.35);padding:12px 15px;margin:0 0 14px;border-radius:10px;font-size:16px}
+.olho b{color:var(--ciano)}
+.formula{background:#0e0b1c;border:1px solid var(--linha);border-left:4px solid var(--neon);
+  padding:12px 15px;margin:0 0 14px;border-radius:0 9px 9px 0;font-size:18px;font-family:"Cambria Math","Georgia",serif}
+.formula b{color:var(--neon)}
+.destaque{background:rgba(255,166,61,.22);color:var(--laranja);padding:1px 5px;border-radius:4px}
+
+.perguntas{border-top:1px dashed var(--linha);padding:18px 22px;background:rgba(0,0,0,.18)}
+.perguntas h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;color:var(--neon)}
+.pergunta{margin:0 0 16px}
+.pergunta label{display:block;font-weight:700;margin-bottom:7px;font-size:16.5px}
+textarea{width:100%;min-height:80px;font-family:inherit;font-size:16px;line-height:1.55;
+  padding:11px;border:1px solid var(--linha);background:#0e0b1c;color:var(--texto);border-radius:9px;resize:vertical}
+textarea:focus{outline:2px solid var(--neon);outline-offset:1px}
+.aviso{font-size:14px;color:var(--laranja);margin:0 0 12px;min-height:18px;line-height:1.5}
+
+.modelo{border-top:1px solid var(--linha);padding:18px 22px;background:rgba(67,233,123,.06)}
+.modelo h4{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px;color:var(--verde)}
+.cadeado{padding:18px 22px;font-size:14.5px;color:var(--texto2)}
+
+textarea.verm{border-color:var(--verm);background:#2a1016}
+.avVerm{color:var(--verm);font-weight:700;font-size:13.5px;margin:7px 0 0}
+.mQ{border-top:1px dashed var(--linha);padding-top:12px;margin-top:12px}
+.mResp{margin:0 0 10px}
+.chkbox{background:var(--noite3);border:1px solid var(--linha);border-radius:10px;padding:12px 14px}
+.chkTit{margin:0 0 9px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--texto2)}
+.ponto{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 0;font-size:15.5px}
+.pbts{display:flex;gap:6px;flex-shrink:0}
+.btChk{border:1px solid var(--linha);background:var(--noite2);padding:5px 14px;border-radius:8px;cursor:pointer;font-size:13px}
+.btChk.on{background:var(--verde);color:#08281a;border-color:var(--verde);font-weight:800}
+.btChk.nao.on{background:var(--verm);color:#2a0d0d;border-color:var(--verm)}
+.auto{display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px dashed var(--linha);padding-top:12px;margin-top:12px}
+.selo-ok{color:var(--verde);font-weight:800}
+.selo-rev{color:var(--verm);font-weight:800}
+.legado{color:var(--texto2);font-size:13px}
+.revisar{border:2px solid var(--verm);background:rgba(255,107,107,.08);border-radius:12px;padding:18px 20px;margin:26px 0}
+.revisar h2{margin:0 0 10px;color:var(--verm);font-size:22px}
+.revisar li{margin-bottom:7px}
+
+.pegadinhas{border:2px solid var(--laranja);background:rgba(255,166,61,.07);padding:20px 22px;margin:32px 0 24px;border-radius:14px}
+.pegadinhas h2{margin:0 0 14px;color:var(--laranja);font-size:24px}
+.pegadinhas ol{margin:0;padding-left:22px}
+.pegadinhas li{margin-bottom:11px}
+.secao-tit{border-bottom:2px solid var(--linha);margin:34px 0 16px;padding-bottom:8px;font-size:25px}
+.tabela-wrap{overflow-x:auto}
+table.cob{width:100%;border-collapse:collapse;background:var(--noite2);font-size:15.5px;border-radius:10px;overflow:hidden}
+table.cob th,table.cob td{border:1px solid var(--linha);padding:9px 11px;text-align:left}
+table.cob th{background:var(--noite3);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--neon)}
+
+.rodape{border-top:1px solid var(--linha);margin-top:34px;padding-top:18px;display:flex;flex-wrap:wrap;
+  gap:12px;justify-content:space-between;align-items:center;font-size:14px;color:var(--texto2)}
+.rodape a{color:var(--texto);text-decoration:none;border:1px solid var(--linha);background:var(--noite2);
+  padding:11px 16px;border-radius:999px;font-weight:700}
+.rodape a:hover{background:var(--neon);color:#09301c;border-color:var(--neon)}
+
+.overlay{position:fixed;inset:0;background:rgba(6,6,14,.78);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.on{display:flex}
+.modal{background:var(--noite2);border:1px solid var(--neon);max-width:440px;width:100%;padding:24px;border-radius:14px}
+.modal h3{margin:0 0 10px;font-size:21px}
+.modal p{margin:0 0 18px}
+.modal .acoes{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+@media(max-width:620px){body{font-size:16.5px}.bloco h2{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="capa">
+  <p class="kicker">Matemática · 9º ano · Avaliação Mensal 2</p>
+  <h1>Parque <span>Zênite</span></h1>
+  <p class="linhafina">Uma noite no parque de diversões onde cada atração é um tema da prova: dinheiro na bilheteria (porcentagem e juros), o painel do público (estatística) e a roda-gigante (ângulos e quadriláteros na circunferência). Frente A: pp. 110–143 e 163–164. Frente B: pp. 70–101.</p>
+  <p style="margin:0"><span class="selo">Atração 1 — Leitura Estendida</span></p>
+</header>
+
+<nav class="abas">
+  <a href="leitura-estendida.html" class="atual">📖 1. Leitura Estendida</a>
+  <a href="resumo.html">🗺️ 2. Resumo</a>
+  <a href="simulado.html">📝 3. Simulado</a>
+  <a href="index.html">🏠 Início</a>
+</nav>
+
+<div class="painel">
+  <div class="status" id="status">Carregando seu progresso…</div>
+  <div class="btns">
+    <button id="btExportar">📥 Exportar</button>
+    <button id="btImportar">📤 Importar</button>
+    <button id="btZerar">🗑️ Zerar tudo</button>
+  </div>
+</div>
+<input type="file" id="arquivo" accept="application/json" style="display:none">
+
+<div class="progresso">
+  <div class="barra"><i id="barra"></i></div>
+  <p id="txtProg">Atração 0 de 6 aberta.</p>
+</div>
+
+<p class="comofunciona"><b>Como funciona:</b> leia a atração, <b>escreva</b> as 3 respostas com as suas palavras (em Matemática, muitas pedem para você <b>resolver uma conta nova</b> ou <b>explicar o passo a passo</b>) e clique em <b>Conferir</b>. Só então aparecem a resposta modelo e o checklist para comparar. Se a resposta sair copiada do texto, o material pede para reescrever — o que fixa Matemática é refazer a conta com a sua cabeça, não copiar.</p>
+
+<section class="tl">
+  <h2>🎡 Mapa do Parque Zênite</h2>
+  <p class="sub">Clique numa atração para pular direto até ela.</p>
+  <div class="trilho" id="trilho"></div>
+</section>
+
+<div id="blocos"></div>
+
+<section class="pegadinhas">
+  <h2>⚠️ As 10 pegadinhas desta prova</h2>
+  <ol>
+    <li><b>Aumentos sucessivos NÃO se somam.</b> Aumentar 10% e depois 20% não dá 30%. Multiplica-se: <u>×1,10 × 1,20 = 1,32</u>, ou seja, +32%.</li>
+    <li><b>Subir e descer a mesma porcentagem não volta ao começo.</b> Aumentar 20% e depois dar 20% de desconto dá <u>×1,20 × 0,80 = 0,96</u> — você termina com 96%, perdendo 4%.</li>
+    <li><b>Juros simples × compostos.</b> No <u>simples</u> os juros caem sempre sobre o <u>capital inicial</u>; no <u>composto</u> caem sobre o <u>montante do período anterior</u> (juros sobre juros).</li>
+    <li><b>Mesma unidade de tempo.</b> Se a taxa é <u>ao mês</u>, o tempo tem que estar <u>em meses</u>. Taxa anual com tempo em meses (ou o contrário) dá conta errada.</li>
+    <li><b>Fórmula do composto.</b> É <u>M = C·(1 + i)<sup>t</sup></u> (o tempo é expoente), não C·(1 + i·t). Essa última é a do simples.</li>
+    <li><b>Frequência relativa.</b> fr = fi ÷ n (total). A <u>soma de todas as fi = n</u>; a <u>soma de todas as fr = 100%</u> (ou 1).</li>
+    <li><b>Ângulo do setor (gráfico de pizza).</b> É <u>fr × 360°</u>, não × 180°. Ex.: 36% → 0,36 × 360° = 129,6° ≈ 130°.</li>
+    <li><b>Ângulo inscrito é METADE do arco.</b> Arco de 60° → inscrito de 30°. Inscrito de 60° → arco de 120°. Quem usa "igual" erra.</li>
+    <li><b>Ângulo central é IGUAL ao arco.</b> O central mede o mesmo que o arco; o inscrito mede a metade. Não troque os dois.</li>
+    <li><b>Quadriláteros na circunferência.</b> No <u>inscrito</u> (vértices na circunferência) os ângulos opostos somam <u>180°</u> (não 90°). No <u>circunscrito</u> (lados tangentes) a soma de dois lados opostos é igual à dos outros dois: <u>AB + CD = BC + AD</u> (Pitot).</li>
+  </ol>
+</section>
+
+<h2 class="secao-tit">🧭 Cobertura: tópico → atração</h2>
+<div class="tabela-wrap">
+<table class="cob">
+  <thead><tr><th>Tópico do escopo</th><th>Páginas</th><th>Atração</th></tr></thead>
+  <tbody>
+    <tr><td>Porcentagem: razão centesimal, fator de aumento e de desconto, sucessivos</td><td>Frente A, 110–143</td><td>Atração 1 — Bilheteria</td></tr>
+    <tr><td>Juros simples: J = C·i·t e montante M = C·(1 + i·t)</td><td>Frente A, 110–143</td><td>Atração 2 — Carnê do Parque</td></tr>
+    <tr><td>Juros compostos: M = C·(1 + i)<sup>t</sup> e juros sobre juros</td><td>Frente A, 110–143</td><td>Atração 3 — Cofre que Cresce</td></tr>
+    <tr><td>Estatística: população e amostra, frequência absoluta e relativa, gráficos e ângulo do setor</td><td>Frente A, 163–164</td><td>Atração 4 — Painel do Público</td></tr>
+    <tr><td>Ângulo central × inscrito, arco e triângulo no diâmetro</td><td>Frente B, 70–101</td><td>Atração 5 — Roda-Gigante</td></tr>
+    <tr><td>Quadriláteros inscritível (opostos suplementares) e circunscritível (Pitot)</td><td>Frente B, 70–101</td><td>Atração 6 — Cabines em Quadra</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="rodape">
+  <span>Próximo material da sequência →</span>
+  <a href="resumo.html">🗺️ Ir para o Resumo</a>
+</div>
+
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h3 id="mTit">Aviso</h3>
+    <p id="mTxt"></p>
+    <div class="acoes">
+      <button id="mNao" style="display:none">Cancelar</button>
+      <button class="principal" id="mSim">Entendi</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= MAPA DO PARQUE ================= */
+var TL=[
+ {a:"🎟️",t:"Bilheteria — porcentagem, aumento e desconto",b:1,c:""},
+ {a:"🧾",t:"Carnê do Parque — juros simples",b:2,c:"laranja"},
+ {a:"🔐",t:"Cofre que Cresce — juros compostos",b:3,c:"laranja"},
+ {a:"📊",t:"Painel do Público — estatística e gráficos",b:4,c:"ciano"},
+ {a:"🎡",t:"Roda-Gigante — ângulo central e inscrito",b:5,c:"rosa"},
+ {a:"🟦",t:"Cabines em Quadra — quadriláteros na circunferência",b:6,c:"rosa"}
+];
+
+/* ================= DADOS ================= */
+var BLOCOS = [
+{n:1,t:"🎟️ Bilheteria: porcentagem, aumento e desconto",pg:"Frente A, pp. 110–143",
+ html:`
+ <p>Toda porcentagem é uma <b>razão de denominador 100</b>. Quando a gente escreve 25%, está dizendo "25 em cada 100", ou seja, a fração 25/100 = 0,25. Para achar <b>x% de um valor V</b>, basta fazer:</p>
+ <div class="formula">x% de V = V · <b>x/100</b></div>
+ <p>Na bilheteria do parque, isso aparece o tempo todo em <b>aumentos</b> e <b>descontos</b>. O truque que resolve quase tudo é pensar em <b>fator multiplicador</b>:</p>
+ <ul>
+  <li><b>Aumento de i%:</b> multiplica-se por <span class="destaque">(1 + i/100)</span>. Um aumento de 15% é o fator 1,15.</li>
+  <li><b>Desconto de i%:</b> multiplica-se por <span class="destaque">(1 − i/100)</span>. Um desconto de 15% é o fator 0,85.</li>
+ </ul>
+ <div class="ex"><b>Exemplo 1:</b> um ingresso de R$ 80 com 25% de desconto. Fator de desconto = 1 − 0,25 = 0,75. Preço final = 80 · 0,75 = <b>R$ 60</b>.</div>
+ <div class="ex"><b>Exemplo 2:</b> uma pulseira de R$ 40 com aumento de 15%. Fator = 1,15. Preço final = 40 · 1,15 = <b>R$ 46</b>.</div>
+ <p>A parte que mais derruba gente é a dos <b>aumentos ou descontos sucessivos</b> (um atrás do outro). Nesse caso, os fatores se <b>multiplicam</b> — eles <b>nunca se somam</b>.</p>
+ <div class="ex"><b>Exemplo 3 (pegadinha clássica):</b> um combo de R$ 50 sobe 10% e depois sobe mais 20%. O preço final é 50 · 1,10 · 1,20 = 50 · 1,32 = <b>R$ 66</b>. Repare: isso equivale a um aumento único de 32%, e <u>não</u> de 30%. Um aumento de 30% daria só 50 · 1,30 = R$ 65.</div>
+ <div class="olho"><b>De olho:</b> o fator já carrega a informação de subir ou descer. Maior que 1 = aumento; menor que 1 = desconto. Decorar os fatores (1,20 sobe 20%; 0,80 desce 20%) deixa a conta muito mais rápida na prova.</div>`,
+ q:["Com as suas palavras, o que significam, numa conta de porcentagem, o fator 1,20 e o fator 0,85?",
+    "Resolva: um combo de R$ 50 recebe um aumento de 10% e, depois, outro de 20%. Calcule o preço final e explique por que ele NÃO é igual ao de um aumento único de 30%.",
+    "Invente um problema SEU com dois descontos sucessivos (por exemplo, numa loja do parque) e resolva mostrando a conta dos fatores."],
+ a:["O fator 1,20 representa um AUMENTO de 20%: ele é 1 + 20/100 = 1,20, e multiplicar por ele é o mesmo que acrescentar 20% ao valor. O fator 0,85 representa um DESCONTO de 15%: é 1 − 15/100 = 0,85, e multiplicar por ele tira 15% do valor. Acima de 1 = aumento; abaixo de 1 = desconto.",
+    "50 · 1,10 · 1,20 = 50 · 1,32 = R$ 66. Não é igual a um aumento de 30% porque aumentos sucessivos se MULTIPLICAM, não se somam: o segundo aumento (20%) incide sobre o valor já aumentado (R$ 55), e não sobre os R$ 50 do começo. Um aumento único de 30% daria 50 · 1,30 = R$ 65 — um real a menos.",
+    "Resposta pessoal. Exemplo: uma camiseta de R$ 100 na loja do parque tem 10% de desconto e, na saída, mais 20% de desconto. Preço final = 100 · 0,90 · 0,80 = 100 · 0,72 = R$ 72 (equivale a um desconto único de 28%, e não de 30%)."]},
+
+{n:2,t:"🧾 Carnê do Parque: juros simples",pg:"Frente A, pp. 110–143",
+ html:`
+ <p>Imagine que você compra o passaporte anual do parque "no carnê". A loja cobra <b>juros</b> por esperar o seu pagamento. Nos <b>juros simples</b>, os juros de cada período são calculados <b>sempre sobre o valor inicial</b> (o capital), e nunca mudam de um mês para o outro.</p>
+ <div class="formula"><b>J = C · i · t</b> &nbsp;&nbsp;e&nbsp;&nbsp; <b>M = C + J = C · (1 + i · t)</b></div>
+ <p>onde <b>J</b> são os juros, <b>C</b> é o capital (valor inicial), <b>i</b> é a taxa (em forma de número, ex.: 2% = 0,02) e <b>t</b> é o tempo. <b>M</b> é o montante (o total que você vai pagar no fim).</p>
+ <div class="olho"><b>Regra de ouro:</b> a taxa e o tempo têm que estar na <b>mesma unidade</b>. Se a taxa é "ao mês" (a.m.), o tempo tem que estar em meses. Se é "ao ano" (a.a.), o tempo em anos.</div>
+ <div class="ex"><b>Exemplo:</b> C = R$ 1 000, taxa de 2% ao mês (i = 0,02), durante t = 3 meses. Então J = 1 000 · 0,02 · 3 = <b>R$ 60</b> de juros. O montante é M = 1 000 + 60 = <b>R$ 1 060</b>. Repare que são R$ 20 de juros por mês, sempre iguais, porque incidem sempre sobre os R$ 1 000 iniciais.</div>
+ <p>É isso que diferencia o simples: o juro é o mesmo em todos os períodos, como se fosse uma "mensalidade fixa de juros".</p>`,
+ q:["O que caracteriza os juros simples? Sobre qual valor eles incidem em cada período?",
+    "Resolva: a loja do parque financia um passaporte de R$ 500 a juros simples de 3% ao mês, durante 4 meses. Calcule os juros (J) e o montante (M).",
+    "Explique, com as suas palavras, por que a taxa e o tempo precisam estar na mesma unidade. Dê um exemplo de conta que daria errado se alguém misturasse as unidades."],
+ a:["Nos juros simples, os juros de cada período são calculados sempre sobre o CAPITAL INICIAL (o valor que foi emprestado ou financiado no começo). Por isso o juro é igual em todos os períodos. As fórmulas são J = C·i·t e M = C·(1 + i·t).",
+    "J = C·i·t = 500 · 0,03 · 4 = R$ 60. O montante é M = C + J = 500 + 60 = R$ 560 (ou direto: M = 500·(1 + 0,03·4) = 500·1,12 = R$ 560).",
+    "Resposta pessoal. A ideia: a taxa diz quanto rende por período, e o tempo tem que contar nesse mesmo período. Exemplo de erro: taxa de 2% ao mês com o tempo colocado como 3 anos. Se eu usar t = 3, estou calculando juros de 3 meses, não de 3 anos. O certo seria transformar 3 anos em 36 meses (t = 36)."]},
+
+{n:3,t:"🔐 Cofre que Cresce: juros compostos",pg:"Frente A, pp. 110–143",
+ html:`
+ <p>Agora imagine um cofrinho do parque que, a cada período, rende juros <b>sobre tudo o que já está dentro dele</b> — inclusive sobre os juros que entraram antes. Isso são os <b>juros compostos</b>, também chamados de "juros sobre juros".</p>
+ <div class="formula"><b>M = C · (1 + i)<sup>t</sup></b> &nbsp;&nbsp;e&nbsp;&nbsp; <b>J = M − C</b></div>
+ <p>O tempo <b>t</b> agora é um <b>expoente</b>: o fator (1 + i) é aplicado uma vez em cada período. Essa é a maior diferença para o simples (onde o tempo apenas multiplica).</p>
+ <div class="ex"><b>Exemplo:</b> C = R$ 1 000, taxa de 10% ao ano (i = 0,1), durante t = 2 anos. Então M = 1 000 · (1,1)<sup>2</sup> = 1 000 · 1,21 = <b>R$ 1 210</b>, e os juros são J = 1 210 − 1 000 = <b>R$ 210</b>.</p>
+ <p>Compare com o <b>juros simples</b> no mesmo caso: J = 1 000 · 0,1 · 2 = R$ 200. O composto rendeu R$ 10 a mais, porque no 2º ano os juros incidiram sobre R$ 1 100 (capital + juros do 1º ano), e não sobre os R$ 1 000 do começo.</div>
+ <div class="olho"><b>De olho:</b> no composto, quanto mais tempo passa, mais a diferença para o simples cresce — é o efeito "bola de neve". Em 1 único período, simples e composto dão exatamente o mesmo resultado.</div>`,
+ q:["Qual é a diferença essencial entre juros simples e juros compostos?",
+    "Resolva: R$ 2 000 aplicados a juros compostos de 10% ao ano por 2 anos. Calcule o montante (M) e os juros (J). Depois diga quanto seriam os juros se fossem simples.",
+    "Explique para um colega, com as suas palavras, por que no juros composto o dinheiro cresce cada vez mais rápido."],
+ a:["No juros simples os juros caem sempre sobre o capital inicial, então o juro de cada período é igual. No juros composto os juros de cada período caem sobre o montante do período anterior (juros sobre juros), então o valor base vai aumentando e os juros também. A fórmula do composto é M = C·(1 + i)^t.",
+    "M = 2 000 · (1,1)² = 2 000 · 1,21 = R$ 2 420. Juros compostos: J = 2 420 − 2 000 = R$ 420. Se fossem juros simples: J = 2 000 · 0,1 · 2 = R$ 400. O composto rendeu R$ 20 a mais.",
+    "Resposta pessoal. A ideia central: no composto, o juro que entrou num período passa a fazer parte do valor sobre o qual os próximos juros são calculados. Como a base aumenta a cada período, o juro seguinte é maior que o anterior — por isso o crescimento acelera, como uma bola de neve que rola e vai ficando maior."]},
+
+{n:4,t:"📊 Painel do Público: estatística e gráficos",pg:"Frente A, pp. 163–164",
+ html:`
+ <p>No painel de dados do parque, a gente estuda o <b>público</b>. Dois nomes aparecem sempre: <b>população</b> é o conjunto inteiro que se quer estudar (todos os visitantes do ano, por exemplo), e <b>amostra</b> é uma parte dela, escolhida para representar o todo quando não dá para perguntar a todo mundo.</p>
+ <p>Depois de coletar os dados, montamos uma <b>tabela de frequência</b>. Duas palavras-chave:</p>
+ <ul>
+  <li><b>Frequência absoluta (fi):</b> quantas vezes cada dado aparece (a contagem "crua").</li>
+  <li><b>Frequência relativa (fr):</b> a parte que aquele dado representa do total: <span class="destaque">fr = fi ÷ n</span>, onde n é o total. Em geral vira porcentagem: fr% = (fi ÷ n) · 100.</li>
+ </ul>
+ <div class="formula">fr = <b>fi / n</b> &nbsp;·&nbsp; Soma das fi = <b>n</b> &nbsp;·&nbsp; Soma das fr = <b>100%</b></div>
+ <div class="ex"><b>Exemplo (tabela "Sabão em pó"):</b> Brancura 341, Limpex 416, Lavamais 243, total n = 1 000. A frequência relativa de Limpex é 416 ÷ 1 000 = 0,416 = <b>41,6%</b>.</div>
+ <p>Os dados viram <b>gráficos</b>: de <b>colunas/barras</b>, de <b>setores</b> (a "pizza"), de <b>linhas</b> (evolução no tempo) e <b>pictograma</b> (figurinhas). No gráfico de <b>setores</b>, cada fatia ocupa um ângulo proporcional à frequência relativa:</p>
+ <div class="formula">ângulo do setor = <b>fr · 360°</b></div>
+ <div class="ex"><b>Exemplo (EEAR-SP):</b> se a região Sudeste tem 36% das inscrições, o setor dela no gráfico de pizza mede 0,36 · 360° = <b>129,6° ≈ 130°</b>.</div>
+ <div class="olho"><b>De olho ao ler um gráfico:</b> sempre confira o <b>título</b> (do que fala), a <b>fonte</b> (quem coletou — isso diz se o dado é confiável), os <b>eixos</b> (o que está em cada um) e a <b>escala</b>. Um gráfico sem fonte clara é um alerta de que o dado pode não ser confiável.</div>`,
+ q:["Qual é a diferença entre frequência absoluta (fi) e frequência relativa (fr)?",
+    "Resolva: numa pesquisa do parque, 20% das pessoas escolheram a roda-gigante como atração favorita. Se os dados forem para um gráfico de setores, qual é o ângulo da fatia da roda-gigante?",
+    "Resolva: uma pesquisa ouviu n = 200 visitantes. Se 35% deles preferem ir ao parque à noite, quantos visitantes isso representa (frequência absoluta)?"],
+ a:["A frequência absoluta (fi) é a contagem: quantas vezes aquele dado aparece. A frequência relativa (fr) é a parte do total que ele representa, calculada por fr = fi ÷ n, quase sempre escrita em porcentagem. A soma de todas as fi dá o total n; a soma de todas as fr dá 100%.",
+    "ângulo do setor = fr · 360° = 0,20 · 360° = 72°.",
+    "fi = 35% de 200 = 0,35 · 200 = 70 visitantes."]},
+
+{n:5,t:"🎡 Roda-Gigante: ângulo central e ângulo inscrito",pg:"Frente B, pp. 70–101",
+ html:`
+ <p>A roda-gigante é uma <b>circunferência</b> cheia de cabines. Ela é perfeita para entender dois ângulos que a prova adora cobrar.</p>
+ <ul>
+  <li><b>Ângulo central:</b> tem o vértice no <b>centro</b> da roda (no eixo). A medida do <b>arco</b> entre duas cabines é <b>igual</b> à medida do ângulo central correspondente.</li>
+  <li><b>Ângulo inscrito:</b> tem o vértice <b>sobre a circunferência</b> (numa cabine) e os lados cortando a roda. Ele mede <b>sempre a METADE</b> do arco correspondente — ou seja, metade do ângulo central que "enxerga" o mesmo arco.</li>
+ </ul>
+ <div class="formula">ângulo central = <b>arco</b> &nbsp;·&nbsp; ângulo inscrito = <b>arco / 2</b></div>
+ <div class="ex"><b>Exemplo:</b> se o arco entre duas cabines mede 60°, um passageiro em outra cabine que "enxerga" esse arco vê um ângulo inscrito de 60° ÷ 2 = <b>30°</b>. Ao contrário: um ângulo inscrito de 60° corresponde a um arco de 60° · 2 = <b>120°</b>.</div>
+ <p>Daí sai uma consequência muito importante, e muito cobrada: <b>todo triângulo inscrito numa semicircunferência é retângulo</b>. Se um dos lados do triângulo é o <b>diâmetro</b> da roda, o vértice oposto vê um arco de 180° (meia volta). Como o ângulo inscrito é a metade do arco, esse ângulo vale 180° ÷ 2 = <span class="destaque">90°</span>.</p>
+ <div class="olho"><b>Vocabulário extra:</b> o <b>arco capaz</b> é o conjunto de todos os pontos que "enxergam" um mesmo segmento sob o mesmo ângulo. E o <b>radiano</b> é outra forma de medir ângulos: 1 radiano ≈ 57,3°.</div>`,
+ q:["Com as suas palavras, qual é a relação entre um ângulo inscrito e o arco que ele enxerga? E entre o ângulo central e o arco?",
+    "Resolva: numa circunferência, o arco AB mede 100°. Quanto mede o ângulo inscrito que enxerga esse arco? E o ângulo central correspondente?",
+    "Explique por que todo triângulo inscrito numa circunferência que tem um dos lados igual ao diâmetro é um triângulo retângulo."],
+ a:["O ângulo inscrito (vértice sobre a circunferência) mede sempre a METADE do arco que ele enxerga. O ângulo central (vértice no centro) mede o MESMO que o arco correspondente. Então o inscrito é sempre metade do central quando os dois olham para o mesmo arco.",
+    "O ângulo inscrito mede a metade do arco: 100° ÷ 2 = 50°. O ângulo central é igual ao arco: 100°.",
+    "Resposta pessoal. A ideia: quando um lado do triângulo é o diâmetro, ele divide a circunferência em duas metades, e o arco que o vértice oposto enxerga é de 180° (meia volta). Como o ângulo inscrito vale a metade do arco, esse ângulo mede 180° ÷ 2 = 90°. Logo, o triângulo é retângulo."]},
+
+{n:6,t:"🟦 Cabines em Quadra: quadriláteros na circunferência",pg:"Frente B, pp. 70–101",
+ html:`
+ <p>Agora pegue <b>quatro cabines</b> e ligue-as formando um quadrilátero. Dependendo de como ele se relaciona com a circunferência, valem duas regras bem diferentes.</p>
+ <p><b>1) Quadrilátero inscritível (inscrito na circunferência):</b> os <b>quatro vértices</b> estão sobre a circunferência. Nesse caso, os <b>ângulos opostos são suplementares</b>, ou seja, <b>somam 180°</b>.</p>
+ <div class="formula">Inscrito: ângulos opostos → <b>somam 180°</b></div>
+ <div class="ex"><b>Exemplo:</b> num quadrilátero inscrito, se um ângulo mede 100°, o ângulo oposto a ele mede 180° − 100° = <b>80°</b>.</div>
+ <p><b>2) Quadrilátero circunscritível (circunscrito a uma circunferência):</b> os <b>quatro lados</b> são tangentes à circunferência (a circunferência fica "por dentro", encostando em cada lado). Nesse caso vale o <b>Teorema de Pitot</b>: a <b>soma de dois lados opostos é igual à soma dos outros dois</b>.</p>
+ <div class="formula">Circunscrito (Pitot): <b>AB + CD = BC + AD</b></div>
+ <div class="ex"><b>Exemplo:</b> num quadrilátero ABCD circunscrito, com AB = 7, BC = 5 e CD = 6, o lado AD vale: AB + CD = BC + AD → 7 + 6 = 5 + AD → 13 = 5 + AD → AD = <b>8</b>.</div>
+ <div class="olho"><b>Não troque os dois:</b> "inscrito" = vértices na circunferência → use a soma dos <b>ângulos</b> opostos (180°). "Circunscrito" = lados tangentes → use a soma dos <b>lados</b> opostos (Pitot).</div>`,
+ q:["Qual é a diferença entre um quadrilátero INSCRITÍVEL e um CIRCUNSCRITÍVEL, e que regra vale em cada um?",
+    "Resolva: num quadrilátero inscrito numa circunferência, dois ângulos valem 110° e 95°. Quanto medem os ângulos opostos a eles?",
+    "Resolva: um quadrilátero ABCD é circunscrito a uma circunferência, com AB = 7, BC = 5 e CD = 6. Use o Teorema de Pitot para achar o lado AD."],
+ a:["O quadrilátero INSCRITÍVEL tem os 4 vértices sobre a circunferência; nele os ângulos opostos são suplementares (somam 180°). O CIRCUNSCRITÍVEL tem os 4 lados tangentes à circunferência; nele vale o Teorema de Pitot: a soma de dois lados opostos é igual à soma dos outros dois (AB + CD = BC + AD).",
+    "Como os ângulos opostos somam 180°: o oposto de 110° mede 180° − 110° = 70°; o oposto de 95° mede 180° − 95° = 85°.",
+    "Pelo Teorema de Pitot: AB + CD = BC + AD → 7 + 6 = 5 + AD → 13 = 5 + AD → AD = 13 − 5 = 8."]},
+];
+
+/* ===== PONTOS DO CHECKLIST (2 a 3 por pergunta) ===== */
+var PONTOS=[
+[["que o fator 1,20 representa um AUMENTO de 20% (1 + 20/100)","que o fator 0,85 representa um DESCONTO de 15% (1 − 15/100)","que acima de 1 é aumento e abaixo de 1 é desconto"],
+ ["que a conta é 50 × 1,10 × 1,20 = R$ 66","que um aumento único de 30% daria R$ 65, menos que R$ 66","que aumentos sucessivos se multiplicam, não se somam"],
+ ["criei um problema MEU com dois descontos (ou aumentos) seguidos","multipliquei os fatores em vez de somar as porcentagens","mostrei o resultado final da conta"]],
+[["que os juros simples incidem SEMPRE sobre o capital inicial","que por isso o juro é igual em todos os períodos","que o montante é M = C·(1 + i·t)"],
+ ["que J = 500 × 0,03 × 4 = R$ 60","que o montante M = 500 + 60 = R$ 560"],
+ ["que a taxa e o tempo precisam estar na MESMA unidade","dei um exemplo de erro (taxa ao mês com tempo em anos, ou vice-versa)"]],
+[["que no simples o juro cai sempre sobre o capital inicial","que no composto o juro cai sobre o montante do período anterior (juros sobre juros)","que a fórmula do composto é M = C·(1 + i)^t"],
+ ["que M = 2 000 × (1,1)² = R$ 2 420 e J = R$ 420","que no juro simples o juro seria R$ 400 (2000 × 0,1 × 2)","que o composto rendeu mais que o simples"],
+ ["que o juro de um período entra na base de cálculo do próximo","que por isso o valor cresce cada vez mais rápido (bola de neve)"]],
+[["que a frequência absoluta (fi) é QUANTAS vezes o dado aparece","que a frequência relativa (fr) é fi ÷ n, em geral em porcentagem","que a soma das fr é 100% e a soma das fi é n"],
+ ["que usei ângulo do setor = fr × 360°","que 0,20 × 360° = 72°"],
+ ["que multipliquei a porcentagem pelo total n","que 35% de 200 = 70"]],
+[["que o ângulo inscrito vale a METADE do arco","que o ângulo central é IGUAL ao arco","que por isso o inscrito é metade do central"],
+ ["que o ângulo inscrito que enxerga o arco de 100° vale 50°","que o ângulo central do mesmo arco vale 100°"],
+ ["que o lado no diâmetro corresponde a um arco de 180°","que o ângulo inscrito é metade disso, ou seja, 90° (triângulo retângulo)"]],
+[["que o inscritível tem os 4 VÉRTICES na circunferência (ângulos opostos somam 180°)","que o circunscritível tem os 4 LADOS tangentes (soma de lados opostos iguais, Pitot)"],
+ ["que o oposto de 110° é 70° (somam 180°)","que o oposto de 95° é 85° (somam 180°)"],
+ ["que usei AB + CD = BC + AD","que 7 + 6 = 5 + AD, logo AD = 8"]]
+];
+
+/* ===== ANTICOPIA ===== */
+function normTxt(s){s=(s||'').toLowerCase();try{s=s.normalize('NFD').replace(/[̀-ͯ]/g,'')}catch(e){}return s.replace(/[^a-z0-9\s]+/g,' ').replace(/\s+/g,' ').trim();}
+var TXTN=BLOCOS.map(function(b){var d=document.createElement('div');d.innerHTML=b.html;return normTxt(d.textContent||d.innerText||'').split(' ');});
+function analisaRuns(rw,bw){
+  var pos={},i2;for(i2=0;i2<bw.length;i2++){(pos[bw[i2]]=pos[bw[i2]]||[]).push(i2);}
+  var i=0,maxRun=0,cob=0,n=rw.length;
+  while(i<n){
+    var best=0,ps=pos[rw[i]]||[];
+    for(var a=0;a<ps.length;a++){var k=0;while(i+k<n&&bw[ps[a]+k]===rw[i+k])k++;if(k>best)best=k;}
+    if(best>maxRun)maxRun=best;
+    if(best>=5){cob+=best;i+=best;}else i++;
+  }
+  return {maxRun:maxRun,cob:cob,n:n};
+}
+var QTXT=BLOCOS.map(function(b){return b.q.map(function(q){return normTxt(q).split(' ');});});
+function tiraCitacao(rw,qw){
+  var pos={},i2;for(i2=0;i2<qw.length;i2++){(pos[qw[i2]]=pos[qw[i2]]||[]).push(i2);}
+  var out=[],i=0;
+  while(i<rw.length){
+    var best=0,ps=pos[rw[i]]||[];
+    for(var a=0;a<ps.length;a++){var k=0;while(i+k<rw.length&&qw[ps[a]+k]===rw[i+k])k++;if(k>best)best=k;}
+    if(best>=4){i+=best;}else{out.push(rw[i]);i++;}
+  }
+  return out;
+}
+function ehTranscrita(txt,n,j){
+  var w=normTxt(txt).split(' ').filter(function(x){return x;});
+  if(w.length<5)return false;
+  if(j)w=tiraCitacao(w,QTXT[n-1][j-1]);
+  if(w.length<5)return false;
+  var r=analisaRuns(w,TXTN[n-1]);
+  return r.maxRun>=8||(w.length>=8&&r.cob/r.n>0.6);
+}
+
+/* ================= ESTADO ================= */
+var KEY='mat9_mensal2_leitura_v1';
+var mem={};
+function ler(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return mem}}
+function gravar(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){mem=s}carimbo();}
+var S=ler(); if(!S.resp)S.resp={}; if(!S.feito)S.feito={}; if(!S.auto)S.auto={}; if(!S.chk)S.chk={}; if(!S.tentou)S.tentou={}; if(!S.transcrita)S.transcrita={};
+
+function carimbo(){
+  var d=new Date();
+  var f=d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  S.quando=f;
+  try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){mem=S}
+  document.getElementById('status').textContent='💾 Salvo automaticamente — última vez: '+f;
+}
+
+/* ================= MODAL ================= */
+function aviso(t,msg,onSim,comCancelar){
+  document.getElementById('mTit').textContent=t;
+  document.getElementById('mTxt').textContent=msg;
+  document.getElementById('mNao').style.display=comCancelar?'inline-block':'none';
+  var ov=document.getElementById('overlay'); ov.classList.add('on');
+  document.getElementById('mSim').onclick=function(){ov.classList.remove('on'); if(onSim)onSim();};
+  document.getElementById('mNao').onclick=function(){ov.classList.remove('on');};
+}
+
+/* ================= RENDER ================= */
+function escapa(s){return (s||'').replace(/</g,'&lt;');}
+function statusBloco(n){
+  var rev=false,total=0,sim=0;
+  for(var j=1;j<=3;j++){
+    var k=n+'-'+j;
+    if(S.transcrita[k])rev=true;
+    var pts=PONTOS[n-1][j-1],c=S.chk[k]||[];
+    for(var p=0;p<pts.length;p++){total++;if(c[p]===0)rev=true;if(c[p]===1)sim++;}
+  }
+  if(rev)return 'rev';
+  if(total&&sim===total)return 'ok';
+  return '';
+}
+function renderTL(){
+  var t=document.getElementById('trilho'); t.innerHTML='';
+  TL.forEach(function(m){
+    var b=document.createElement('button');
+    b.className='marco '+(m.c||'');
+    b.innerHTML='<b>'+m.a+'</b><span>'+m.t+'</span><em>Atração '+m.b+'</em>';
+    b.onclick=function(){
+      var el=document.getElementById('bloco'+m.b);
+      if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+    };
+    t.appendChild(b);
+  });
+}
+function render(){
+  var alvo=document.getElementById('blocos'); alvo.innerHTML='';
+  BLOCOS.forEach(function(b,i){
+    var liberado=(i===0)||S.feito[b.n-1];
+    var feito=!!S.feito[b.n];
+    var sec=document.createElement('section');
+    sec.className='bloco'+(liberado?'':' trancado');
+    sec.id='bloco'+b.n;
+    var perg='';
+    b.q.forEach(function(qt,j){
+      var k=b.n+'-'+(j+1);
+      var v=escapa(S.resp[k]);
+      var verm=!!S.transcrita[k];
+      var ro=(feito&&!verm)?'readonly':'';
+      perg+='<div class="pergunta"><label for="t'+k+'">'+(j+1)+'. '+qt+'</label>'+
+            '<textarea id="t'+k+'" data-b="'+b.n+'" data-q="'+(j+1)+'" class="'+(verm?'verm':'')+'" '+ro+'>'+v+'</textarea>'+
+            (verm?'<p class="avVerm">🔴 Esta resposta ainda está igual ao texto da atração — reescreva com as SUAS palavras.</p>':'')+
+            '</div>';
+    });
+    var mod='';
+    b.a.forEach(function(at,j){
+      var k=b.n+'-'+(j+1);
+      var pts=PONTOS[b.n-1][j],chk=S.chk[k]||[];
+      var linhas='';
+      pts.forEach(function(pt,pi){
+        var vv=chk[pi];
+        linhas+='<div class="ponto"><span>'+pt+'</span>'+
+          '<span class="pbts"><button class="btChk '+(vv===1?'on':'')+'" data-k="'+k+'" data-p="'+pi+'" data-v="1">Sim</button>'+
+          '<button class="btChk nao '+(vv===0?'on':'')+'" data-k="'+k+'" data-p="'+pi+'" data-v="0">Não</button></span></div>';
+      });
+      mod+='<div class="mQ"><p class="mResp"><b>'+(j+1)+'.</b> '+at+'</p>'+
+           '<div class="chkbox"><p class="chkTit">✅ Minha resposta disse que…</p>'+linhas+'</div></div>';
+    });
+    var st=feito?statusBloco(b.n):'';
+    var selo=st==='ok'?'<span class="selo-ok">✅ Atração ok</span>':st==='rev'?'<span class="selo-rev">🔁 Para revisar</span>':'<span class="legado">Responda o checklist acima para fechar esta atração.</span>';
+    sec.innerHTML=
+      '<div class="cab"><span class="num">Atração '+b.n+'</span><h2>'+b.t+'</h2><span class="pag">'+b.pg+'</span></div>'+
+      (liberado?
+        '<div class="corpo">'+b.html+'</div>'+
+        '<div class="perguntas"><h3>✍️ Escreva com as suas palavras — 3 perguntas</h3>'+perg+
+        '<p class="aviso" id="av'+b.n+'"></p>'+
+        '<button class="principal btConferir" data-b="'+b.n+'" '+(feito?'disabled':'')+'>✔️ Conferir</button></div>'+
+        '<div class="modelo" style="display:'+(feito?'block':'none')+'" id="mod'+b.n+'">'+
+          '<h4>Resposta modelo — compare ponto a ponto</h4>'+mod+
+          '<div class="auto">'+selo+'</div>'+
+        '</div>'
+      : '<div class="cadeado">🔒 Esta atração abre depois que você conferir a Atração '+(b.n-1)+'.</div>');
+    alvo.appendChild(sec);
+  });
+  ligar(); progresso(); renderRevisar();
+}
+function renderRevisar(){
+  var box=document.getElementById('revisarBox');
+  if(!box){box=document.createElement('section');box.id='revisarBox';box.className='revisar';
+    var bl=document.getElementById('blocos');bl.parentNode.insertBefore(box,bl.nextSibling);}
+  var itens=[];
+  BLOCOS.forEach(function(b){
+    if(!S.feito[b.n])return;
+    for(var j=1;j<=3;j++){
+      var k=b.n+'-'+j;
+      if(S.transcrita[k])itens.push('Atração '+b.n+', pergunta '+j+': resposta igual ao texto — reescrever com as suas palavras.');
+      var pts=PONTOS[b.n-1][j-1],c=S.chk[k]||[];
+      for(var p=0;p<pts.length;p++){if(c[p]===0)itens.push('Atração '+b.n+', pergunta '+j+': faltou dizer — “'+pts[p]+'”.');}
+    }
+  });
+  if(!itens.length){box.style.display='none';return;}
+  box.style.display='block';
+  var h='<h2>🔁 Para revisar antes da prova</h2><ul>';
+  itens.forEach(function(t){h+='<li>'+t+'</li>';});
+  box.innerHTML=h+'</ul>';
+}
+function ligar(){
+  document.querySelectorAll('textarea').forEach(function(t){
+    t.addEventListener('input',function(){
+      var k=t.dataset.b+'-'+t.dataset.q;
+      S.resp[k]=t.value;
+      if(S.transcrita[k]&&!ehTranscrita(t.value,parseInt(t.dataset.b,10),parseInt(t.dataset.q,10))){
+        delete S.transcrita[k]; gravar(S); render();
+        var nt=document.getElementById('t'+k);
+        if(nt){nt.focus();try{nt.selectionStart=nt.selectionEnd=nt.value.length;}catch(e){}}
+        return;
+      }
+      gravar(S);
+    });
+  });
+  document.querySelectorAll('.btConferir').forEach(function(bt){
+    bt.addEventListener('click',function(){
+      var n=parseInt(bt.dataset.b,10),vazio=false;
+      for(var j=1;j<=3;j++){var v=(S.resp[n+'-'+j]||'').trim();if(v.length<3)vazio=true;}
+      var av=document.getElementById('av'+n);
+      if(vazio){av.textContent='⚠️ Responda as 3 perguntas (pelo menos 3 letras em cada) antes de conferir.';return;}
+      var primeira=[],naoMudou=[];
+      for(var j2=1;j2<=3;j2++){
+        var k=n+'-'+j2,v2=S.resp[k]||'';
+        if(ehTranscrita(v2,n,j2)){
+          if(S.tentou[k]===undefined){S.tentou[k]=v2;primeira.push(j2);}
+          else if(v2===S.tentou[k]){naoMudou.push(j2);}
+          else{S.transcrita[k]=true;}
+        }else if(S.transcrita[k]){delete S.transcrita[k];}
+      }
+      if(primeira.length||naoMudou.length){
+        gravar(S);
+        var m='🟡 ';
+        if(primeira.length)m+='Pergunta'+(primeira.length>1?'s':'')+' '+primeira.join(', ')+': boa parte da resposta está igual ao texto da atração. Tente explicar como se fosse para um amigo, sem olhar o texto — pode ficar mais curto e simples, o que vale é ser SEU. Depois clique em Conferir de novo. ';
+        if(naoMudou.length)m+='Pergunta'+(naoMudou.length>1?'s':'')+' '+naoMudou.join(', ')+': você ainda não mudou a resposta — altere e clique em Conferir de novo.';
+        av.textContent=m;
+        return;
+      }
+      av.textContent='';
+      S.feito[n]=true; gravar(S); render();
+      var el2=document.getElementById('mod'+n); if(el2)el2.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  });
+  document.querySelectorAll('.btChk').forEach(function(bt){
+    bt.addEventListener('click',function(){
+      var k=bt.dataset.k;
+      if(!S.chk[k])S.chk[k]=[];
+      S.chk[k][parseInt(bt.dataset.p,10)]=parseInt(bt.dataset.v,10);
+      var n=parseInt(k.split('-')[0],10);
+      var st=statusBloco(n); if(st)S.auto[n]=st;
+      gravar(S); render();
+    });
+  });
+}
+function progresso(){
+  var c=0; BLOCOS.forEach(function(b){if(S.feito[b.n])c++;});
+  document.getElementById('barra').style.width=(c/BLOCOS.length*100)+'%';
+  document.getElementById('txtProg').textContent='Atração '+c+' de '+BLOCOS.length+' aberta'+(c===BLOCOS.length?' — leitura completa! 🎉':'.');
+}
+
+/* ================= BOTÕES ================= */
+document.getElementById('btExportar').onclick=function(){
+  var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='leitura-estendida-matematica9-mensal2.json'; a.click();
+};
+document.getElementById('btImportar').onclick=function(){document.getElementById('arquivo').click();};
+document.getElementById('arquivo').onchange=function(e){
+  var f=e.target.files[0]; if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{ var d=JSON.parse(r.result); S=d; if(!S.resp)S.resp={}; if(!S.feito)S.feito={}; if(!S.auto)S.auto={}; if(!S.chk)S.chk={}; if(!S.tentou)S.tentou={}; if(!S.transcrita)S.transcrita={};
+      gravar(S); render(); aviso('Pronto','Seu progresso foi importado com sucesso.');
+    }catch(err){ aviso('Ops','Não consegui ler esse arquivo. Ele precisa ser o .json exportado por este material.'); }
+  };
+  r.readAsText(f);
+};
+document.getElementById('btZerar').onclick=function(){
+  aviso('Zerar tudo?','Isso apaga todas as respostas escritas nesta Leitura Estendida. Não dá para desfazer.',function(){
+    S={resp:{},feito:{},auto:{},chk:{},tentou:{},transcrita:{}}; gravar(S); render();
+  },true);
+};
+
+renderTL(); render(); carimbo();
+</script>
+</body>
+</html>

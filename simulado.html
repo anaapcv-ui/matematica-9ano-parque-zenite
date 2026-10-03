@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulado — Matemática 9º ano | Parque Zênite (Mensal 2)</title>
+<style>
+:root{
+  --noite:#17132a; --noite2:#201b3a; --noite3:#2a2350;
+  --neon:#43e97b; --neon2:#6cf59a; --laranja:#ffa63d; --rosa:#ff5d8f; --ciano:#54d6ec;
+  --texto:#edeaf7; --texto2:#aba6c7; --linha:#3a3360; --verm:#ff6b6b; --verde:#43e97b;
+  --azulp:#121a3a;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--noite);color:var(--texto);
+  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+  font-size:17.5px;line-height:1.7;
+  background-image:radial-gradient(circle at 15% 8%,rgba(67,233,123,.08),transparent 45%),radial-gradient(circle at 85% 30%,rgba(255,93,143,.07),transparent 45%);
+  background-attachment:fixed;}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px 80px}
+a{color:var(--neon)}
+header.capa{margin:26px 0 0;padding:26px 24px;border:1px solid var(--linha);border-radius:14px 14px 0 0;
+  background:linear-gradient(145deg,var(--azulp),var(--noite3));position:relative;overflow:hidden}
+.kicker{font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ciano);margin:0 0 8px;font-weight:700}
+header.capa h1{margin:0;font-size:clamp(25px,5.5vw,40px);line-height:1.12}
+.linhafina{margin:13px 0 0;color:var(--texto2);font-size:14.5px}
+.selo{display:inline-block;margin-top:13px;background:var(--neon);color:#09301c;font-weight:800;
+  font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+.faixaverm{height:7px;background:repeating-linear-gradient(90deg,var(--verm) 0 22px,#b63b3b 22px 44px);border-radius:0 0 4px 4px;margin:0 0 6px}
+nav.abas{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}
+nav.abas a{font-size:14px;font-weight:600;text-decoration:none;color:var(--texto);
+  border:1px solid var(--linha);background:var(--noite2);padding:9px 14px;border-radius:999px}
+nav.abas a.atual{background:var(--neon);color:#09301c;border-color:var(--neon)}
+nav.abas a:hover{border-color:var(--neon);color:var(--neon2)}
+nav.abas a.atual:hover{color:#09301c}
+.painel{border:1px solid var(--linha);background:var(--noite2);padding:13px 15px;margin:18px 0 22px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-radius:12px}
+.painel .status{font-size:13.5px;color:var(--texto2)}
+.painel .btns{display:flex;gap:7px;flex-wrap:wrap}
+button{font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+  border:1px solid var(--linha);background:var(--noite3);color:var(--texto);padding:9px 14px;border-radius:9px}
+button:hover{border-color:var(--neon);color:var(--neon2)}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.principal{background:var(--verm);color:#2a0d0d;border-color:var(--verm);font-weight:800}
+button.principal:hover{background:#ff8585;color:#2a0d0d}
+.progresso{margin:0 0 22px}
+.barra{height:14px;border:1px solid var(--linha);background:var(--noite2);border-radius:999px;overflow:hidden}
+.barra i{display:block;height:100%;width:0;transition:width .4s;background:repeating-linear-gradient(45deg,var(--verm) 0 10px,#b63b3b 10px 20px)}
+.progresso p{font-size:13.5px;margin:8px 0 0;color:var(--texto2)}
+.comofunciona{font-size:15px;background:var(--noite2);border:1px solid var(--linha);
+  border-left:4px solid var(--ciano);padding:14px 16px;border-radius:10px;margin:0 0 26px}
+.q{border:1px solid var(--linha);background:var(--noite2);border-radius:14px;padding:18px 20px;margin:0 0 18px}
+.cab{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 10px}
+.num{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#09301c;background:var(--neon);padding:5px 11px;border-radius:999px}
+.tipo{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--linha);color:var(--texto2)}
+.tipo.som{border-color:var(--laranja);color:var(--laranja)}
+.tipo.rom{border-color:var(--ciano);color:var(--ciano)}
+.tipo.me{border-color:var(--rosa);color:var(--rosa)}
+.val{margin-left:auto;font-size:13px;color:var(--texto2);font-weight:700}
+.enun{margin:0 0 14px;font-size:17px;font-weight:600}
+ul.afirm{list-style:none;margin:0 0 14px;padding:0;border:1px solid var(--linha);border-radius:10px;overflow:hidden}
+ul.afirm li{display:flex;gap:10px;padding:10px 13px;border-bottom:1px solid var(--linha);font-size:15.5px}
+ul.afirm li:last-child{border-bottom:none}
+ul.afirm .rn{color:var(--ciano);font-weight:800;flex-shrink:0}
+ul.alts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+ul.alts button.alt{width:100%;text-align:left;display:flex;gap:11px;align-items:flex-start;
+  border:1px solid var(--linha);background:var(--noite3);color:var(--texto);padding:12px 14px;border-radius:10px;font-weight:500;font-size:15.5px;line-height:1.5}
+ul.alts button.alt:hover{border-color:var(--neon)}
+ul.alts .letra{font-weight:800;color:var(--neon)}
+ul.alts button.alt.sel{border-color:var(--laranja);background:rgba(255,166,61,.12)}
+ul.alts button.alt.certa{border-color:var(--verde);background:rgba(67,233,123,.14)}
+ul.alts button.alt.errada{opacity:.65}
+ul.alts button.alt.errada.sel{border-color:var(--verm);background:rgba(255,107,107,.12);opacity:1}
+.coment{font-size:14px;color:var(--texto2);margin:7px 0 0;padding:9px 12px;background:var(--noite3);border-radius:8px;border-left:3px solid var(--verm)}
+.coment.ok{border-left-color:var(--verde);color:var(--texto)}
+ul.somlist{list-style:none;margin:0 0 6px;padding:0;display:flex;flex-direction:column;gap:9px}
+ul.somlist button.somit{width:100%;text-align:left;display:flex;gap:11px;align-items:flex-start;
+  border:1px solid var(--linha);background:var(--noite3);color:var(--texto);padding:12px 14px;border-radius:10px;font-weight:500;font-size:15.5px;line-height:1.5}
+ul.somlist button.somit:hover{border-color:var(--laranja)}
+.somit .cx{width:19px;height:19px;border:2px solid var(--texto2);border-radius:5px;flex-shrink:0;margin-top:2px}
+.somit.on .cx{background:var(--laranja);border-color:var(--laranja)}
+.somit .pesoc{font-weight:800;color:var(--laranja);flex-shrink:0;min-width:24px}
+.somit.vtrue{border-color:var(--verde)} .somit.vfalse{opacity:.6}
+.somasoma{font-size:15px;color:var(--texto2);margin:2px 0 0}
+.somasoma b{color:var(--laranja);font-size:17px}
+.gabsom{margin:8px 0 0;padding:10px 13px;background:var(--noite3);border-radius:9px}
+.gabsom .vv{color:var(--verde);font-weight:700}.gabsom .ff{color:var(--verm);font-weight:700}
+.enviar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  border:1px solid var(--linha);background:var(--noite2);border-radius:12px;padding:16px 18px;margin:22px 0}
+.enviar span{font-size:14.5px;color:var(--texto2)}
+.resultado{display:none;border:2px solid var(--neon);background:rgba(67,233,123,.07);border-radius:14px;padding:22px;margin:0 0 18px;text-align:center}
+.resultado h2{margin:0 0 8px;font-size:24px}
+.codigo{font-family:"Courier New",monospace;font-size:28px;font-weight:800;color:var(--neon);letter-spacing:.08em;
+  background:#0e0b1c;border:1px dashed var(--neon);border-radius:10px;padding:10px;margin:6px 0}
+.gabbox{border:1px solid var(--linha);background:var(--noite2);border-radius:12px;padding:18px 20px;margin:0 0 18px}
+input[type=text]{font-family:"Courier New",monospace;font-size:17px;padding:11px 12px;border-radius:9px;
+  border:1px solid var(--linha);background:#0e0b1c;color:var(--texto);width:180px;text-transform:uppercase}
+input[type=text]:focus{outline:2px solid var(--neon)}
+.aviso{font-size:14px;color:var(--laranja);margin:10px 0 0;min-height:18px}
+.rodape{border-top:1px solid var(--linha);margin-top:30px;padding-top:18px;display:flex;flex-wrap:wrap;
+  gap:12px;justify-content:space-between;align-items:center;font-size:14px;color:var(--texto2)}
+.rodape a{color:var(--texto);text-decoration:none;border:1px solid var(--linha);background:var(--noite2);
+  padding:11px 16px;border-radius:999px;font-weight:700}
+.overlay{position:fixed;inset:0;background:rgba(6,6,14,.78);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.on{display:flex}
+.modal{background:var(--noite2);border:1px solid var(--neon);max-width:440px;width:100%;padding:24px;border-radius:14px}
+.modal h3{margin:0 0 10px}.modal p{margin:0 0 18px}
+.modal .acoes{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+@media(max-width:620px){body{font-size:16.5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="capa">
+  <p class="kicker">Colégio Coração Feliz · Matemática · 9º ano</p>
+  <h1>Simulado — Avaliação Mensal 2 (3º trimestre)</h1>
+  <p class="linhafina">25 questões no estilo vestibular: somatório, números romanos e objetivas. Porcentagem, juros, estatística e circunferência. Frente A (pp. 110–143, 163–164) e Frente B (pp. 70–101). Sem consulta.</p>
+  <p style="margin:0"><span class="selo">Atração 3 — Simulado</span></p>
+</header>
+<div class="faixaverm"></div>
+
+<nav class="abas">
+  <a href="leitura-estendida.html">📖 1. Leitura Estendida</a>
+  <a href="resumo.html">🗺️ 2. Resumo</a>
+  <a href="simulado.html" class="atual">📝 3. Simulado</a>
+  <a href="index.html">🏠 Início</a>
+</nav>
+
+<div class="painel">
+  <div class="status" id="status">Carregando seu progresso…</div>
+  <div class="btns">
+    <button id="btExportar">📥 Exportar</button>
+    <button id="btImportar">📤 Importar</button>
+    <button id="btZerar">🗑️ Zerar tudo</button>
+  </div>
+</div>
+<input type="file" id="arquivo" accept="application/json" style="display:none">
+
+<div class="progresso">
+  <div class="barra"><i id="barra"></i></div>
+  <p id="txtProg">0 de 25 respondidas.</p>
+</div>
+
+<p class="comofunciona"><b>Como funciona:</b> são <b>25 questões</b> de três tipos. Nas de <b>somatório</b>, marque todas as afirmativas corretas — a soma dos números (01, 02, 04, 08, 16) aparece sozinha embaixo. Nas de <b>números romanos</b>, leia as afirmativas I a IV e escolha a alternativa certa. As demais são <b>objetivas</b>. Responda tudo e clique em <b>Enviar</b>: depois disso as respostas travam e você recebe um código <b>SIM-XX-YY</b>, que abre o gabarito comentado. Cada questão vale 0,4 (total 10,0).</p>
+
+<div id="questoes"></div>
+
+<div class="enviar">
+  <span id="txtEnviar">Responda todas as questões para liberar o envio.</span>
+  <button class="principal" id="btEnviar" disabled>✅ Enviar respostas</button>
+</div>
+
+<section class="resultado" id="resultado">
+  <h2 id="rTit">Resultado</h2>
+  <p id="rTxt"></p>
+  <p>Seu código de liberação:</p>
+  <div class="codigo" id="rCod">SIM-00-AA</div>
+  <p style="font-size:14.5px;color:var(--texto2);margin:6px 0 0">Guarde este código. Ele abre o gabarito comentado aqui embaixo e o Relatório para os pais, na página inicial.</p>
+</section>
+
+<section class="gabbox" id="gabbox" style="display:none">
+  <h2 style="margin:0 0 8px;font-size:22px">🔓 Abrir o gabarito comentado</h2>
+  <p style="font-size:15px;color:var(--texto2)">Digite o código que apareceu no seu resultado.</p>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+    <input type="text" id="inCod" placeholder="SIM-00-AA" maxlength="9">
+    <button class="principal" id="btAbrir" style="background:var(--neon);color:#09301c;border-color:var(--neon)">Abrir gabarito</button>
+  </div>
+  <p class="aviso" id="avCod"></p>
+</section>
+
+<div class="rodape">
+  <span>Terminou o kit! Volte ao início para ver o Relatório para os pais.</span>
+  <a href="index.html">🏠 Página inicial</a>
+</div>
+
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h3 id="mTit">Aviso</h3>
+    <p id="mTxt"></p>
+    <div class="acoes">
+      <button id="mNao" style="display:none">Cancelar</button>
+      <button class="principal" id="mSim" style="background:var(--neon);color:#09301c;border-color:var(--neon)">Entendi</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* tipo: me = objetiva | rom = numeros romanos | som = somatorio
+   Em 'me' e 'rom', a PRIMEIRA alternativa da lista e a correta (ok:1) e a ordem e embaralhada na tela. */
+var Q=[
+/* 1 */{tipo:"me",e:"Um ingresso do parque custa R$ 120 e está com 25% de desconto. O preço final é:",
+ o:[{ok:1,t:"R$ 90,00.",c:"Correto. Desconto de 25% é o fator 0,75; 120 × 0,75 = R$ 90."},
+   {t:"R$ 30,00.",c:"Errado. R$ 30 é apenas o valor do desconto (120 × 0,25); o preço final é o que sobra."},
+   {t:"R$ 95,00.",c:"Errado. Não bate com nenhuma conta de 25%."},
+   {t:"R$ 144,00.",c:"Errado. R$ 144 seria um aumento de 20%, não um desconto."}]},
+
+/* 2 */{tipo:"me",e:"Um lanche de R$ 50 sofre um aumento de 10% e, em seguida, outro de 20%. O preço final é:",
+ o:[{ok:1,t:"R$ 66,00.",c:"Correto. Aumentos sucessivos multiplicam os fatores: 50 × 1,10 × 1,20 = 50 × 1,32 = R$ 66."},
+   {t:"R$ 65,00.",c:"Errado. R$ 65 seria somar as porcentagens (um aumento único de 30%: 50 × 1,30). Mas elas se multiplicam, não se somam."},
+   {t:"R$ 60,00.",c:"Errado. R$ 60 considera só o aumento de 20% (50 × 1,20)."},
+   {t:"R$ 80,00.",c:"Errado. Não corresponde a nenhuma combinação de 10% e 20%."}]},
+
+/* 3 */{tipo:"som",e:"Sobre porcentagem e fator multiplicador, assinale o que for correto.",
+ it:[{p:1,v:1,t:"Dar um desconto de 15% equivale a multiplicar o valor por 0,85.",c:"Verdadeira: 1 − 15/100 = 0,85."},
+   {p:2,v:1,t:"Aumentar um valor em 20% equivale a multiplicar por 1,20.",c:"Verdadeira: 1 + 20/100 = 1,20."},
+   {p:4,v:0,t:"Aumentar 10% e depois 20% é o mesmo que aumentar 30%.",c:"Falsa: 1,10 × 1,20 = 1,32, ou seja, +32%. Aumentos sucessivos se multiplicam."},
+   {p:8,v:1,t:"Aumentar 20% e depois dar 20% de desconto não devolve o valor original.",c:"Verdadeira: 1,20 × 0,80 = 0,96 (termina com 96% do valor)."},
+   {p:16,v:0,t:"Para achar 30% de um valor, basta dividir o valor por 30.",c:"Falsa: 30% é multiplicar por 0,30 (ou dividir por 100 e multiplicar por 30)."}]},
+
+/* 4 */{tipo:"me",e:"De uma turma de 40 alunos, 30% foram ao parque. Quantos alunos foram?",
+ o:[{ok:1,t:"12 alunos.",c:"Correto. 30% de 40 = 0,30 × 40 = 12."},
+   {t:"10 alunos.",c:"Errado. Não corresponde a 30% de 40."},
+   {t:"13 alunos.",c:"Errado. 30% de 40 dá exatamente 12."},
+   {t:"28 alunos.",c:"Errado. 28 é quem NÃO foi (os 70% restantes)."}]},
+
+/* 5 */{tipo:"me",e:"Um capital de R$ 800 é aplicado a juros simples de 2% ao mês durante 5 meses. Os juros (J) são:",
+ o:[{ok:1,t:"R$ 80,00.",c:"Correto. J = C·i·t = 800 × 0,02 × 5 = R$ 80."},
+   {t:"R$ 880,00.",c:"Errado. R$ 880 é o montante (capital + juros), não os juros."},
+   {t:"R$ 16,00.",c:"Errado. R$ 16 são os juros de 1 mês; a aplicação dura 5 meses."},
+   {t:"R$ 100,00.",c:"Errado. Não bate com a conta 800 × 0,02 × 5."}]},
+
+/* 6 */{tipo:"som",e:"Sobre juros simples, com C = R$ 1 000, taxa de 3% ao mês e tempo de 4 meses, assinale o que for correto.",
+ it:[{p:1,v:1,t:"Os juros incidem sempre sobre o capital inicial.",c:"Verdadeira: é a marca dos juros simples."},
+   {p:2,v:0,t:"Os juros do segundo mês são maiores que os do primeiro mês.",c:"Falsa: nos juros simples o juro é igual em todos os meses (R$ 30 por mês, aqui)."},
+   {p:4,v:1,t:"Os juros totais da aplicação são R$ 120.",c:"Verdadeira: J = 1 000 × 0,03 × 4 = R$ 120."},
+   {p:8,v:1,t:"A taxa e o tempo devem estar na mesma unidade de tempo.",c:"Verdadeira: taxa ao mês pede tempo em meses."},
+   {p:16,v:0,t:"O montante é calculado por M = C·(1 + i)^t.",c:"Falsa: essa é a fórmula dos juros compostos. No simples, M = C·(1 + i·t) = R$ 1 120."}]},
+
+/* 7 */{tipo:"me",e:"Que capital gera R$ 60 de juros simples em 3 meses, a uma taxa de 2% ao mês?",
+ o:[{ok:1,t:"R$ 1 000,00.",c:"Correto. J = C·i·t → 60 = C × 0,02 × 3 = C × 0,06 → C = 60 ÷ 0,06 = R$ 1 000."},
+   {t:"R$ 900,00.",c:"Errado. 900 × 0,06 = R$ 54, diferente de R$ 60."},
+   {t:"R$ 1 200,00.",c:"Errado. 1 200 × 0,06 = R$ 72, diferente de R$ 60."},
+   {t:"R$ 100,00.",c:"Errado. 100 × 0,06 = R$ 6, bem menos que R$ 60."}]},
+
+/* 8 */{tipo:"me",e:"Um capital de R$ 1 000 é aplicado a juros compostos de 10% ao ano durante 2 anos. O montante (M) é:",
+ o:[{ok:1,t:"R$ 1 210,00.",c:"Correto. M = C·(1 + i)^t = 1 000 × (1,1)² = 1 000 × 1,21 = R$ 1 210."},
+   {t:"R$ 1 200,00.",c:"Errado. R$ 1 200 seria o montante a juros SIMPLES (1 000 × 1,20)."},
+   {t:"R$ 1 100,00.",c:"Errado. R$ 1 100 é o montante depois de apenas 1 ano."},
+   {t:"R$ 1 440,00.",c:"Errado. Não corresponde a (1,1)² = 1,21."}]},
+
+/* 9 */{tipo:"som",e:"Sobre juros compostos, com C = R$ 2 000, taxa de 10% ao ano e tempo de 2 anos, assinale o que for correto.",
+ it:[{p:1,v:1,t:"Os juros de cada período incidem sobre o montante do período anterior.",c:"Verdadeira: é o 'juros sobre juros'."},
+   {p:2,v:1,t:"O montante é R$ 2 420.",c:"Verdadeira: 2 000 × (1,1)² = 2 000 × 1,21 = R$ 2 420."},
+   {p:4,v:0,t:"Os juros compostos dessa aplicação são R$ 400.",c:"Falsa: os juros compostos são 2 420 − 2 000 = R$ 420. R$ 400 seriam os juros SIMPLES."},
+   {p:8,v:1,t:"Na fórmula dos juros compostos, o tempo aparece como expoente.",c:"Verdadeira: M = C·(1 + i)^t."},
+   {p:16,v:0,t:"Em qualquer prazo, juros simples e compostos dão o mesmo montante.",c:"Falsa: eles só coincidem em um único período; a partir daí o composto rende mais."}]},
+
+/* 10 */{tipo:"me",e:"Em qual situação os juros simples e os juros compostos dão exatamente o mesmo resultado?",
+ o:[{ok:1,t:"Quando o tempo é de um único período.",c:"Correto. Em 1 período, C·(1 + i·t) e C·(1 + i)^t são iguais; a diferença só aparece a partir do 2º período."},
+   {t:"Quando a taxa é maior que 100%.",c:"Errado. O valor da taxa não faz os dois coincidirem."},
+   {t:"Quando o capital é muito alto.",c:"Errado. O capital não influencia nessa comparação."},
+   {t:"Nunca dão o mesmo resultado.",c:"Errado. Em um único período eles são sempre iguais."}]},
+
+/* 11 */{tipo:"me",e:"Numa pesquisa com 1 000 pessoas, uma marca de sabão em pó teve frequência absoluta igual a 416. A frequência relativa dessa marca é:",
+ o:[{ok:1,t:"41,6%.",c:"Correto. fr = fi ÷ n = 416 ÷ 1 000 = 0,416 = 41,6%."},
+   {t:"4,16%.",c:"Errado. Errou a posição da vírgula: 416 ÷ 1 000 = 0,416 = 41,6%."},
+   {t:"58,4%.",c:"Errado. 58,4% é a parte que NÃO escolheu essa marca (100% − 41,6%)."},
+   {t:"416%.",c:"Errado. Frequência relativa é uma parte do total; não pode passar de 100%."}]},
+
+/* 12 */{tipo:"me",e:"Numa pesquisa, a região Sudeste representa 36% das inscrições. Num gráfico de setores, o ângulo da fatia do Sudeste é, aproximadamente:",
+ o:[{ok:1,t:"130°.",c:"Correto. Ângulo do setor = fr × 360° = 0,36 × 360° = 129,6° ≈ 130°."},
+   {t:"64,8°.",c:"Errado. 64,8° seria 0,36 × 180°; o círculo todo tem 360°, não 180°."},
+   {t:"36°.",c:"Errado. 36° ignora o cálculo do setor; é só a porcentagem lida como grau."},
+   {t:"100°.",c:"Errado. Não corresponde a 0,36 × 360°."}]},
+
+/* 13 */{tipo:"rom",e:"Uma cidade tem 250 000 domicílios distribuídos assim quanto ao nº de moradores: 1 a 2 → 19%; 3 a 4 → 51%; 5 a 6 → 22%; 7 ou mais → 8%. Analise as afirmativas.",
+ af:["A soma de todas as frequências relativas é 100%.",
+   "A faixa de 3 a 4 moradores corresponde a 127 500 domicílios.",
+   "A faixa de 7 ou mais moradores corresponde a 25 000 domicílios.",
+   "A faixa de 1 a 2 moradores corresponde a 47 500 domicílios."],
+ o:[{ok:1,t:"As afirmativas I, II e IV estão corretas.",c:"Correto. 19+51+22+8 = 100%. 0,51 × 250 000 = 127 500 e 0,19 × 250 000 = 47 500. Só a III é falsa."},
+   {t:"As afirmativas I, II e III estão corretas.",c:"Errado. A III é falsa: 0,08 × 250 000 = 20 000 domicílios, não 25 000."},
+   {t:"Apenas as afirmativas II e IV estão corretas.",c:"Errado. A I também é verdadeira (as relativas somam 100%)."},
+   {t:"Apenas as afirmativas I e III estão corretas.",c:"Errado. A III é falsa e a II e a IV são verdadeiras."}]},
+
+/* 14 */{tipo:"som",e:"Sobre frequências e leitura de dados estatísticos, assinale o que for correto.",
+ it:[{p:1,v:1,t:"A frequência absoluta indica quantas vezes um dado aparece.",c:"Verdadeira: é a contagem crua do dado."},
+   {p:2,v:1,t:"A frequência relativa é obtida dividindo a frequência absoluta pelo total.",c:"Verdadeira: fr = fi ÷ n."},
+   {p:4,v:0,t:"A soma de todas as frequências absolutas é sempre 100%.",c:"Falsa: a soma das absolutas é o total n; quem soma 100% são as relativas."},
+   {p:8,v:1,t:"No gráfico de setores, o ângulo de cada fatia é a frequência relativa multiplicada por 360°.",c:"Verdadeira: ângulo = fr × 360°."},
+   {p:16,v:0,t:"Amostra é o conjunto inteiro que se deseja estudar.",c:"Falsa: o conjunto inteiro é a população; a amostra é uma parte dela."}]},
+
+/* 15 */{tipo:"me",e:"Numa pesquisa com 200 visitantes, 35% preferem ir ao parque à noite. Quantos visitantes isso representa?",
+ o:[{ok:1,t:"70 visitantes.",c:"Correto. 35% de 200 = 0,35 × 200 = 70."},
+   {t:"35 visitantes.",c:"Errado. 35 é a porcentagem, não a quantidade; 35% de 200 é 70."},
+   {t:"165 visitantes.",c:"Errado. 165 seriam os 82,5%; não corresponde a 35%."},
+   {t:"57 visitantes.",c:"Errado. Não corresponde a 35% de 200."}]},
+
+/* 16 */{tipo:"me",e:"Um gráfico de colunas mostra as notificações de uma doença de 2010 a 2018, nesta ordem: 2 100, 41, 18, 0, 338, 2 058, 185, 13 e 882. Em que ano houve o MAIOR número de notificações?",
+ o:[{ok:1,t:"2010, com 2 100 notificações.",c:"Correto. 2 100 é o maior valor da série, e corresponde ao primeiro ano, 2010."},
+   {t:"2015, com 2 058 notificações.",c:"Errado. 2 058 é o segundo maior valor; o maior é 2 100, em 2010."},
+   {t:"2018, com 882 notificações.",c:"Errado. 882 está longe do valor máximo."},
+   {t:"2013, com 0 notificação.",c:"Errado. 2013 é justamente o ano de MENOR número (zero)."}]},
+
+/* 17 */{tipo:"me",e:"Numa circunferência, um ângulo inscrito enxerga um arco de 80°. Quanto mede esse ângulo inscrito?",
+ o:[{ok:1,t:"40°.",c:"Correto. O ângulo inscrito mede a metade do arco: 80° ÷ 2 = 40°."},
+   {t:"80°.",c:"Errado. 80° seria o ângulo central (igual ao arco); o inscrito é a metade."},
+   {t:"160°.",c:"Errado. Dobrou o arco em vez de dividir por 2."},
+   {t:"20°.",c:"Errado. Dividiu por 4; o inscrito é a metade do arco, ou seja, 40°."}]},
+
+/* 18 */{tipo:"me",e:"Numa circunferência, um ângulo central mede 110°. Quanto mede o arco correspondente?",
+ o:[{ok:1,t:"110°.",c:"Correto. O ângulo central tem a mesma medida do arco correspondente."},
+   {t:"55°.",c:"Errado. 55° seria o ângulo inscrito; o arco é igual ao ângulo central."},
+   {t:"220°.",c:"Errado. Dobrou o valor sem necessidade."},
+   {t:"70°.",c:"Errado. Não há relação que leve a 70° aqui."}]},
+
+/* 19 */{tipo:"me",e:"Um triângulo está inscrito numa circunferência e um de seus lados coincide com o diâmetro. O ângulo oposto a esse lado mede:",
+ o:[{ok:1,t:"90°.",c:"Correto. O diâmetro corresponde a um arco de 180°; o ângulo inscrito é a metade, 90°. O triângulo é retângulo."},
+   {t:"45°.",c:"Errado. 45° seria a metade de 90°, não corresponde ao arco de 180°."},
+   {t:"180°.",c:"Errado. 180° é a medida do arco (o diâmetro), não do ângulo inscrito."},
+   {t:"Depende do tamanho da circunferência.",c:"Errado. Sempre dá 90°, qualquer que seja o raio."}]},
+
+/* 20 */{tipo:"som",e:"Sobre ângulos na circunferência, assinale o que for correto.",
+ it:[{p:1,v:1,t:"O ângulo central tem a mesma medida do arco correspondente.",c:"Verdadeira: central = arco."},
+   {p:2,v:0,t:"O ângulo inscrito tem a mesma medida do arco correspondente.",c:"Falsa: o inscrito mede a METADE do arco."},
+   {p:4,v:1,t:"O ângulo inscrito mede a metade do ângulo central que enxerga o mesmo arco.",c:"Verdadeira: inscrito = central ÷ 2."},
+   {p:8,v:1,t:"Um ângulo inscrito de 30° corresponde a um arco de 60°.",c:"Verdadeira: arco = inscrito × 2 = 60°."},
+   {p:16,v:0,t:"Todo triângulo inscrito numa circunferência é retângulo.",c:"Falsa: só é retângulo quando um dos lados é o diâmetro."}]},
+
+/* 21 */{tipo:"rom",e:"Sobre arcos, ângulos e radianos, analise as afirmativas.",
+ af:["Se um arco mede 120°, o ângulo inscrito que o enxerga mede 60°.",
+   "Se um arco mede 120°, o ângulo central correspondente mede 60°.",
+   "Um ângulo inscrito que enxerga um arco de 180° (meia circunferência) mede 90°.",
+   "Um radiano equivale a aproximadamente 57,3°."],
+ o:[{ok:1,t:"As afirmativas I, III e IV estão corretas.",c:"Correto. Inscrito = 120 ÷ 2 = 60° (I). Arco de 180° → inscrito de 90° (III). 1 rad ≈ 57,3° (IV). Só a II é falsa: o central é igual ao arco, 120°."},
+   {t:"As afirmativas I, II e III estão corretas.",c:"Errado. A II é falsa: o ângulo central de um arco de 120° mede 120°, não 60°."},
+   {t:"Apenas as afirmativas II e IV estão corretas.",c:"Errado. A II é falsa, e a I e a III são verdadeiras."},
+   {t:"Apenas as afirmativas III e IV estão corretas.",c:"Errado. A I também é verdadeira (inscrito = metade do arco)."}]},
+
+/* 22 */{tipo:"me",e:"Num quadrilátero inscrito numa circunferência, um dos ângulos mede 100°. O ângulo oposto a ele mede:",
+ o:[{ok:1,t:"80°.",c:"Correto. Em quadrilátero inscrito, ângulos opostos são suplementares: 180° − 100° = 80°."},
+   {t:"100°.",c:"Errado. Opostos iguais valem para alguns paralelogramos, não para o quadrilátero inscrito em geral."},
+   {t:"260°.",c:"Errado. Ângulo de quadrilátero não passa de 180°; os opostos somam 180°."},
+   {t:"90°.",c:"Errado. 90° só se o ângulo dado também fosse 90°."}]},
+
+/* 23 */{tipo:"me",e:"Um quadrilátero ABCD é circunscrito a uma circunferência, com AB = 7, BC = 5 e CD = 6. Quanto mede o lado AD?",
+ o:[{ok:1,t:"8.",c:"Correto. Teorema de Pitot: AB + CD = BC + AD → 7 + 6 = 5 + AD → 13 = 5 + AD → AD = 8."},
+   {t:"4.",c:"Errado. Não satisfaz AB + CD = BC + AD (daria 13 = 9)."},
+   {t:"6.",c:"Errado. Com AD = 6, teríamos 13 = 11, o que é falso."},
+   {t:"18.",c:"Errado. Somou os três lados; o Pitot compara somas de lados opostos."}]},
+
+/* 24 */{tipo:"som",e:"Sobre quadriláteros inscritíveis e circunscritíveis, assinale o que for correto.",
+ it:[{p:1,v:1,t:"Num quadrilátero inscritível, os ângulos opostos são suplementares (somam 180°).",c:"Verdadeira: é a propriedade do quadrilátero inscrito."},
+   {p:2,v:0,t:"Num quadrilátero inscritível, os ângulos opostos são sempre iguais.",c:"Falsa: eles somam 180° (são suplementares), e não necessariamente iguais."},
+   {p:4,v:1,t:"Num quadrilátero circunscritível, a soma de dois lados opostos é igual à soma dos outros dois.",c:"Verdadeira: é o Teorema de Pitot."},
+   {p:8,v:0,t:"O quadrilátero inscritível tem os quatro lados tangentes à circunferência.",c:"Falsa: lados tangentes é o circunscritível; o inscritível tem os quatro VÉRTICES sobre a circunferência."},
+   {p:16,v:1,t:"O Teorema de Pitot se aplica aos quadriláteros circunscritíveis.",c:"Verdadeira: Pitot é a propriedade dos circunscritíveis."}]},
+
+/* 25 */{tipo:"rom",e:"Sobre quadriláteros na circunferência, analise as afirmativas.",
+ af:["Num quadrilátero inscrito, se um ângulo mede 95°, o seu oposto mede 85°.",
+   "Num quadrilátero circunscrito ABCD com AB = 9, BC = 4 e CD = 5, o lado AD mede 10.",
+   "Num quadrilátero inscrito, os quatro ângulos internos somam 180°.",
+   "Para um quadrilátero ser inscritível, basta que seus quatro vértices estejam sobre uma mesma circunferência."],
+ o:[{ok:1,t:"As afirmativas I, II e IV estão corretas.",c:"Correto. Oposto de 95° = 85° (I). Pitot: 9 + 5 = 4 + AD → AD = 10 (II). Vértices na circunferência = inscritível (IV). A III é falsa: os quatro ângulos somam 360°; são os OPOSTOS que somam 180°."},
+   {t:"As afirmativas I, II e III estão corretas.",c:"Errado. A III é falsa: os quatro ângulos de um quadrilátero somam 360°, não 180°."},
+   {t:"Apenas as afirmativas I e III estão corretas.",c:"Errado. A II é verdadeira (AD = 10) e a III é falsa."},
+   {t:"Apenas as afirmativas II e IV estão corretas.",c:"Errado. A I também é verdadeira (oposto de 95° é 85°)."}]}
+];
+
+/* ===== EMBARALHAR (mulberry32) ===== */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function embaralha(arr,seed){var r=mulberry32(seed),a=arr.slice();
+  for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+var ORDEM=Q.map(function(q,i){return q.o?embaralha(q.o,1000+i*13):null;});
+var LETRAS=['a','b','c','d'];
+var ROM=['I','II','III','IV'];
+var TIPONOME={me:'Objetiva',rom:'Números romanos',som:'Somatório'};
+function somaCerta(q){var s=0;q.it.forEach(function(x){if(x.v)s+=x.p;});return s;}
+
+/* ===== ESTADO ===== */
+var KEY='mat9_mensal2_simulado_v1';
+var mem={};
+function ler(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return mem}}
+function gravar(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){mem=s}carimbo();}
+var S=ler(); if(!S.resp)S.resp={}; if(!S.som)S.som={};
+function carimbo(){
+  var d=new Date();
+  var f=d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  S.quando=f;
+  try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){mem=S}
+  document.getElementById('status').textContent='💾 Salvo automaticamente — última vez: '+f;
+}
+function aviso(t,msg,onSim,comCancelar){
+  document.getElementById('mTit').textContent=t;
+  document.getElementById('mTxt').textContent=msg;
+  document.getElementById('mNao').style.display=comCancelar?'inline-block':'none';
+  var ov=document.getElementById('overlay'); ov.classList.add('on');
+  document.getElementById('mSim').onclick=function(){ov.classList.remove('on'); if(onSim)onSim();};
+  document.getElementById('mNao').onclick=function(){ov.classList.remove('on');};
+}
+function letras2(seed){var r=mulberry32(seed),L='ABCDEFGHJKLMNPQRSTUVWXYZ';
+  return L[Math.floor(r()*L.length)]+L[Math.floor(r()*L.length)];}
+function respondida(i){
+  if(Q[i].tipo==='som'){var m=S.som[i];return m&&Object.keys(m).length>0;}
+  return S.resp[i]!==undefined;
+}
+function somaAluno(i){var s=0,m=S.som[i]||{};Q[i].it.forEach(function(x,j){if(m[j])s+=x.p;});return s;}
+function acertou(i){
+  if(Q[i].tipo==='som')return somaAluno(i)===somaCerta(Q[i]);
+  var s=S.resp[i]; return s!==undefined&&!!ORDEM[i][s].ok;
+}
+function acertos(){var c=0;for(var i=0;i<Q.length;i++){if(acertou(i))c++;}return c;}
+
+/* ===== RENDER ===== */
+function render(){
+  var alvo=document.getElementById('questoes'); alvo.innerHTML='';
+  Q.forEach(function(q,i){
+    var sec=document.createElement('section'); sec.className='q'; sec.id='q'+i;
+    var corpo='';
+    if(q.tipo==='rom'){
+      corpo+='<ul class="afirm">';
+      q.af.forEach(function(a,j){corpo+='<li><span class="rn">'+ROM[j]+'.</span><span>'+a+'</span></li>';});
+      corpo+='</ul>';
+    }
+    if(q.tipo==='som'){
+      var m=S.som[i]||{};
+      corpo+='<ul class="somlist">';
+      q.it.forEach(function(x,j){
+        var cls='somit'+(m[j]?' on':'');
+        if(S.gabarito)cls+=x.v?' vtrue':' vfalse';
+        corpo+='<li><button class="'+cls+'" data-q="'+i+'" data-i="'+j+'" '+(S.enviado?'disabled':'')+'>'+
+          '<span class="cx"></span><span class="pesoc">'+(x.p<10?'0'+x.p:x.p)+'</span><span>'+x.t+'</span></button>'+
+          (S.gabarito?'<p class="coment'+(x.v?' ok':'')+'">'+(x.v?'✔️ ':'✖️ ')+x.c+'</p>':'')+'</li>';
+      });
+      corpo+='</ul><p class="somasoma">Sua soma: <b id="soma'+i+'">'+(respondida(i)?(somaAluno(i)<10?'0':'')+somaAluno(i):'--')+'</b></p>';
+      if(S.gabarito){
+        var sc=somaCerta(q);
+        corpo+='<div class="gabsom"><p><b>Soma correta: '+(sc<10?'0':'')+sc+'</b></p><p>'+
+          (acertou(i)?'<span class="vv">✔️ Você acertou a soma.</span>':'<span class="ff">✖️ Sua soma foi '+(somaAluno(i)<10?'0':'')+somaAluno(i)+'.</span>')+'</p></div>';
+      }
+    }
+    if(q.o){
+      var alts='';
+      ORDEM[i].forEach(function(o,j){
+        var cls='alt';
+        if(S.enviado){ if(o.ok)cls+=' certa'; else cls+=' errada'; if(S.resp[i]===j&&!o.ok)cls+=' sel'; }
+        else if(S.resp[i]===j)cls+=' sel';
+        alts+='<li><button class="'+cls+'" data-q="'+i+'" data-a="'+j+'" '+(S.enviado?'disabled':'')+'>'+
+          '<span class="letra">'+LETRAS[j]+')</span><span>'+o.t+'</span></button>'+
+          (S.gabarito?'<p class="coment'+(o.ok?' ok':'')+'">'+(o.ok?'✔️ ':'✖️ ')+o.c+'</p>':'')+'</li>';
+      });
+      corpo+='<ul class="alts">'+alts+'</ul>';
+    }
+    sec.innerHTML='<div class="cab"><span class="num">Questão '+(i+1)+'</span>'+
+      '<span class="tipo '+q.tipo+'">'+TIPONOME[q.tipo]+'</span><span class="val">(0,4)</span></div>'+
+      '<p class="enun">'+q.e+'</p>'+corpo;
+    alvo.appendChild(sec);
+  });
+  document.querySelectorAll('.alt').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(S.enviado)return;
+      S.resp[b.dataset.q]=parseInt(b.dataset.a,10); gravar(S); render();
+    });
+  });
+  document.querySelectorAll('.somit').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(S.enviado)return;
+      var qi=b.dataset.q,ii=b.dataset.i;
+      if(!S.som[qi])S.som[qi]={};
+      if(S.som[qi][ii])delete S.som[qi][ii]; else S.som[qi][ii]=1;
+      gravar(S); render();
+    });
+  });
+  progresso();
+}
+function progresso(){
+  var c=0; for(var i=0;i<Q.length;i++){if(respondida(i))c++;}
+  document.getElementById('barra').style.width=(c/Q.length*100)+'%';
+  document.getElementById('txtProg').textContent=c+' de '+Q.length+' respondidas.';
+  var bt=document.getElementById('btEnviar'),tx=document.getElementById('txtEnviar');
+  if(S.enviado){bt.disabled=true;tx.textContent='Respostas enviadas e travadas. Use o código para abrir o gabarito.';}
+  else if(c===Q.length){bt.disabled=false;tx.textContent='Tudo respondido! Depois de enviar não dá para mudar.';}
+  else{bt.disabled=true;tx.textContent='Faltam '+(Q.length-c)+' questão(ões). Nas de somatório, marque ao menos uma afirmativa.';}
+  if(S.enviado)mostraResultado();
+}
+function mostraResultado(){
+  var a=acertos();
+  var cod='SIM-'+(a<10?'0':'')+a+'-'+(S.cod||letras2(7734+a));
+  S.cod=cod.split('-')[2]; S.codigo=cod; S.acertos=a;
+  try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){mem=S}
+  document.getElementById('resultado').style.display='block';
+  document.getElementById('gabbox').style.display='block';
+  document.getElementById('rTit').textContent=a>=20?'🏆 Pronta para a prova!':a>=14?'👍 Quase lá — revise os pontos fracos':'📚 Volte ao Resumo e à Leitura Estendida';
+  document.getElementById('rTxt').textContent='Você acertou '+a+' de '+Q.length+' questões, o que dá nota '+(Math.round(a*0.4*10)/10).toString().replace('.',',')+' de 10,0.';
+  document.getElementById('rCod').textContent=cod;
+}
+document.getElementById('btEnviar').onclick=function(){
+  aviso('Enviar as respostas?','Depois de enviar, as respostas ficam travadas e não dá para mudar. Quer enviar agora?',function(){
+    S.enviado=true; gravar(S); render();
+    document.getElementById('resultado').scrollIntoView({behavior:'smooth',block:'center'});
+  },true);
+};
+document.getElementById('btAbrir').onclick=function(){
+  var v=(document.getElementById('inCod').value||'').trim().toUpperCase();
+  if(v===S.codigo){S.gabarito=true;gravar(S);render();document.getElementById('avCod').textContent='';
+    aviso('Gabarito liberado','As explicações apareceram em cada questão. Nas de somatório, cada afirmativa vem marcada como verdadeira ou falsa, com o motivo.');}
+  else{document.getElementById('avCod').textContent='⚠️ Código não confere. Ele está no quadro do resultado, logo acima, no formato SIM-XX-YY.';}
+};
+document.getElementById('btExportar').onclick=function(){
+  var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='simulado-matematica9-mensal2.json'; a.click();
+};
+document.getElementById('btImportar').onclick=function(){document.getElementById('arquivo').click();};
+document.getElementById('arquivo').onchange=function(e){
+  var f=e.target.files[0]; if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{var d=JSON.parse(r.result);S=d;if(!S.resp)S.resp={};if(!S.som)S.som={};gravar(S);render();aviso('Pronto','Seu progresso foi importado com sucesso.');}
+    catch(err){aviso('Ops','Não consegui ler esse arquivo. Ele precisa ser o .json exportado por este material.');}
+  };
+  r.readAsText(f);
+};
+document.getElementById('btZerar').onclick=function(){
+  aviso('Zerar tudo?','Isso apaga suas respostas, o código e o gabarito deste Simulado. Não dá para desfazer.',function(){
+    S={resp:{},som:{}}; gravar(S);
+    document.getElementById('resultado').style.display='none';
+    document.getElementById('gabbox').style.display='none';
+    document.getElementById('inCod').value='';
+    render();
+  },true);
+};
+render(); carimbo();
+</script>
+</body>
+</html>

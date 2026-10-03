@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resumo — Matemática 9º ano | Parque Zênite (Mensal 2)</title>
+<style>
+:root{
+  --noite:#17132a; --noite2:#201b3a; --noite3:#2a2350;
+  --neon:#43e97b; --neon2:#6cf59a; --laranja:#ffa63d; --rosa:#ff5d8f; --ciano:#54d6ec;
+  --texto:#edeaf7; --texto2:#aba6c7; --linha:#3a3360; --verm:#ff6b6b; --verde:#43e97b;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--noite);color:var(--texto);
+  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+  font-size:17.5px;line-height:1.7;
+  background-image:radial-gradient(circle at 15% 8%,rgba(67,233,123,.09),transparent 45%),radial-gradient(circle at 85% 30%,rgba(255,93,143,.08),transparent 45%),radial-gradient(circle at 50% 85%,rgba(255,166,61,.06),transparent 45%);
+  background-attachment:fixed;}
+.wrap{max-width:1000px;margin:0 auto;padding:0 18px 80px}
+a{color:var(--neon)}
+header.capa{margin:26px 0 6px;padding:26px 24px;border:1px solid var(--linha);border-radius:14px;
+  background:linear-gradient(145deg,var(--noite2),var(--noite3));position:relative;overflow:hidden}
+.kicker{font-size:12.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--neon);margin:0 0 8px;font-weight:700}
+header.capa h1{margin:0;font-size:clamp(28px,6vw,46px);line-height:1.1}
+header.capa h1 span{color:var(--laranja)}
+.linhafina{margin:14px 0 0;color:var(--texto2);font-size:14.5px}
+.selo{display:inline-block;margin-top:14px;background:var(--neon);color:#09301c;font-weight:800;
+  font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+nav.abas{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+nav.abas a{font-size:14px;font-weight:600;text-decoration:none;color:var(--texto);
+  border:1px solid var(--linha);background:var(--noite2);padding:9px 14px;border-radius:999px}
+nav.abas a.atual{background:var(--neon);color:#09301c;border-color:var(--neon)}
+nav.abas a:hover{border-color:var(--neon);color:var(--neon2)}
+nav.abas a.atual:hover{color:#09301c}
+.painel{border:1px solid var(--linha);background:var(--noite2);padding:13px 15px;margin:18px 0 22px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-radius:12px}
+.painel .status{font-size:13.5px;color:var(--texto2)}
+.painel .btns{display:flex;gap:7px;flex-wrap:wrap}
+button{font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+  border:1px solid var(--linha);background:var(--noite3);color:var(--texto);padding:9px 14px;border-radius:9px}
+button:hover{border-color:var(--neon);color:var(--neon2)}
+h2.sec{border-bottom:2px solid var(--linha);margin:38px 0 14px;padding-bottom:9px;font-size:25px}
+h2.sec small{display:block;font-size:14px;font-weight:400;color:var(--texto2);margin-top:5px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.ficha{border:1px solid var(--linha);background:var(--noite2);border-radius:14px;padding:18px 18px;border-top:4px solid var(--neon)}
+.ficha.c-lar{border-top-color:var(--laranja)} .ficha.c-ros{border-top-color:var(--rosa)} .ficha.c-cia{border-top-color:var(--ciano)}
+.ficha h3{margin:0 0 10px;font-size:19px}
+.ficha .formula{background:#0e0b1c;border:1px solid var(--linha);border-left:4px solid var(--neon);
+  padding:11px 13px;margin:0 0 10px;border-radius:0 9px 9px 0;font-size:18px;font-family:"Cambria Math","Georgia",serif}
+.ficha.c-lar .formula{border-left-color:var(--laranja)} .ficha.c-ros .formula{border-left-color:var(--rosa)} .ficha.c-cia .formula{border-left-color:var(--ciano)}
+.ficha p{margin:0 0 9px;font-size:15.5px;color:var(--texto)}
+.ficha .ex{font-size:14.5px;color:var(--texto2)}
+.ficha b{color:var(--neon2)}
+.ficha.c-lar b{color:var(--laranja)} .ficha.c-ros b{color:var(--rosa)} .ficha.c-cia b{color:var(--ciano)}
+/* flip */
+.flip{perspective:1000px;min-height:150px;cursor:pointer}
+.flip .in{position:relative;width:100%;height:100%;min-height:150px;transition:transform .5s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--linha);
+  border-radius:14px;padding:16px 16px;background:var(--noite2);display:flex;flex-direction:column;justify-content:center}
+.flip .frente{border-top:4px solid var(--ciano)}
+.flip .verso{transform:rotateY(180deg);background:var(--noite3);border-top:4px solid var(--neon)}
+.flip .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ciano);margin:0 0 6px;font-weight:700}
+.flip h3{margin:0 0 6px;font-size:18px}
+.flip .fr{margin:0;font-size:15px;color:var(--texto)}
+.flip .vira{margin:10px 0 0;font-size:12px;color:var(--texto2)}
+.flip .verso p{margin:0 0 8px;font-size:15px}
+.flip .verso b{color:var(--neon2)}
+/* tabela comparativa */
+.tabela-wrap{overflow-x:auto}
+table.cmp{width:100%;border-collapse:collapse;background:var(--noite2);font-size:15.5px;border-radius:10px;overflow:hidden}
+table.cmp th,table.cmp td{border:1px solid var(--linha);padding:10px 12px;text-align:left;vertical-align:top}
+table.cmp th{background:var(--noite3);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--neon)}
+table.cmp td b{color:var(--laranja)}
+/* postit */
+.postits{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.postit{background:#2a2415;border:1px solid #6a5a1f;border-left:5px solid var(--laranja);border-radius:10px;padding:14px 16px;font-size:15.5px}
+.postit b{color:var(--laranja)}
+.alerta{border:2px solid var(--verm);background:rgba(255,107,107,.08);border-radius:12px;padding:16px 18px;margin:16px 0;font-size:16px}
+.alerta b{color:var(--verm)}
+/* glossario */
+.glos{border:1px solid var(--linha);background:var(--noite2);border-radius:12px;padding:6px 18px}
+.glos dt{font-weight:800;color:var(--neon2);margin:14px 0 2px}
+.glos dd{margin:0 0 6px;color:var(--texto);font-size:15.5px}
+.linhaform{display:flex;gap:10px;overflow-x:auto;padding:6px 2px 14px}
+.lf{flex:0 0 auto;width:210px;background:var(--noite3);border:1px solid var(--linha);border-top:3px solid var(--neon);border-radius:10px;padding:12px}
+.lf b{display:block;color:var(--neon);font-size:14px;margin-bottom:6px}
+.lf span{display:block;font-size:17px;font-family:"Cambria Math","Georgia",serif}
+.vamos{text-align:center;margin:36px 0 0}
+.vamos a{display:inline-block;background:var(--neon);color:#09301c;font-weight:800;text-decoration:none;
+  padding:15px 26px;border-radius:999px;font-size:17px}
+.vamos a:hover{background:var(--neon2)}
+.rodape{border-top:1px solid var(--linha);margin-top:34px;padding-top:18px;display:flex;flex-wrap:wrap;
+  gap:12px;justify-content:space-between;align-items:center;font-size:14px;color:var(--texto2)}
+.rodape a{color:var(--texto);text-decoration:none;border:1px solid var(--linha);background:var(--noite2);
+  padding:11px 16px;border-radius:999px;font-weight:700}
+.overlay{position:fixed;inset:0;background:rgba(6,6,14,.78);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.on{display:flex}
+.modal{background:var(--noite2);border:1px solid var(--neon);max-width:440px;width:100%;padding:24px;border-radius:14px}
+.modal h3{margin:0 0 10px}.modal p{margin:0 0 18px}
+.modal .acoes{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+@media(max-width:620px){body{font-size:16.5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="capa">
+  <p class="kicker">Matemática · 9º ano · Avaliação Mensal 2</p>
+  <h1>Resumo — Parque <span>Zênite</span></h1>
+  <p class="linhafina">Todas as fórmulas, regras rápidas, pegadinhas e o vocabulário da prova, num lugar só. Role até o fim: no final tem um atalho para o Simulado.</p>
+  <p style="margin:0"><span class="selo">Atração 2 — Resumo</span></p>
+</header>
+
+<nav class="abas">
+  <a href="leitura-estendida.html">📖 1. Leitura Estendida</a>
+  <a href="resumo.html" class="atual">🗺️ 2. Resumo</a>
+  <a href="simulado.html">📝 3. Simulado</a>
+  <a href="index.html">🏠 Início</a>
+</nav>
+
+<div class="painel">
+  <div class="status" id="status">Carregando seu progresso…</div>
+  <div class="btns">
+    <button id="btExportar">📥 Exportar</button>
+    <button id="btImportar">📤 Importar</button>
+    <button id="btZerar">🗑️ Zerar tudo</button>
+  </div>
+</div>
+<input type="file" id="arquivo" accept="application/json" style="display:none">
+
+<h2 class="sec">🧮 As fórmulas da prova<small>As seis que resolvem quase tudo. Decore o formato e o que cada letra significa.</small></h2>
+<div class="linhaform">
+  <div class="lf"><b>Porcentagem</b><span>x% de V = V · x/100</span></div>
+  <div class="lf"><b>Aumento / Desconto</b><span>× (1 + i) / × (1 − i)</span></div>
+  <div class="lf"><b>Juros simples</b><span>J = C · i · t</span></div>
+  <div class="lf"><b>Juros compostos</b><span>M = C · (1 + i)<sup>t</sup></span></div>
+  <div class="lf"><b>Frequência relativa</b><span>fr = fi / n</span></div>
+  <div class="lf"><b>Ângulo do setor</b><span>fr · 360°</span></div>
+  <div class="lf"><b>Ângulo inscrito</b><span>arco / 2</span></div>
+  <div class="lf"><b>Pitot</b><span>AB + CD = BC + AD</span></div>
+</div>
+
+<h2 class="sec">🎟️ Dinheiro: porcentagem e juros</h2>
+<div class="grid">
+  <div class="ficha c-lar">
+    <h3>Porcentagem e fator</h3>
+    <div class="formula">x% de V = V · <b>x/100</b></div>
+    <p>Aumento de i% → fator <b>(1 + i/100)</b>. Desconto → <b>(1 − i/100)</b>.</p>
+    <p>Sucessivos: <b>multiplica os fatores</b> (nunca soma as %).</p>
+    <p class="ex">Ex.: +10% e depois +20% = ×1,10×1,20 = ×1,32 = +32% (não 30%).</p>
+  </div>
+  <div class="ficha c-lar">
+    <h3>Juros simples</h3>
+    <div class="formula"><b>J = C · i · t</b><br>M = C · (1 + i · t)</div>
+    <p>Os juros caem <b>sempre sobre o capital inicial</b> → juro igual todo período.</p>
+    <p class="ex">Ex.: C=1000, 2% a.m., 3 meses → J=60, M=1060.</p>
+  </div>
+  <div class="ficha c-lar">
+    <h3>Juros compostos</h3>
+    <div class="formula"><b>M = C · (1 + i)<sup>t</sup></b><br>J = M − C</div>
+    <p>Juros <b>sobre juros</b>: cada período rende sobre o montante anterior. O tempo é <b>expoente</b>.</p>
+    <p class="ex">Ex.: C=1000, 10% a.a., 2 anos → M=1210, J=210 (simples daria 200).</p>
+  </div>
+</div>
+
+<h2 class="sec">⚖️ Simples × Composto<small>A troca entre os dois é a pegadinha nº 1 da prova.</small></h2>
+<div class="tabela-wrap">
+<table class="cmp">
+  <thead><tr><th></th><th>Juros simples</th><th>Juros compostos</th></tr></thead>
+  <tbody>
+    <tr><td><b>Sobre o quê rende</b></td><td>sempre sobre o <b>capital inicial</b></td><td>sobre o <b>montante do período anterior</b></td></tr>
+    <tr><td><b>Fórmula do montante</b></td><td>M = C·(1 + i·<b>t</b>)</td><td>M = C·(1 + i)<sup><b>t</b></sup></td></tr>
+    <tr><td><b>Como o tempo entra</b></td><td>multiplicando</td><td>como expoente</td></tr>
+    <tr><td><b>Juro por período</b></td><td>igual todo período</td><td>aumenta a cada período</td></tr>
+    <tr><td><b>Em 1 só período</b></td><td colspan="2">dão o <b>mesmo</b> resultado</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="sec">📊 Estatística: frequências e gráficos</h2>
+<div class="grid">
+  <div class="ficha c-cia">
+    <h3>Frequências</h3>
+    <div class="formula"><b>fr = fi / n</b></div>
+    <p><b>fi</b> (absoluta) = quantas vezes aparece. <b>fr</b> (relativa) = parte do total, em geral em %.</p>
+    <p>Soma das <b>fi = n</b>. Soma das <b>fr = 100%</b>.</p>
+    <p class="ex">Ex.: Limpex 416 de 1000 → fr = 41,6%.</p>
+  </div>
+  <div class="ficha c-cia">
+    <h3>Gráfico de setores</h3>
+    <div class="formula">ângulo = <b>fr · 360°</b></div>
+    <p>Cada fatia da pizza é proporcional à frequência relativa.</p>
+    <p class="ex">Ex.: 36% → 0,36·360° = 129,6° ≈ 130°. &nbsp; 20% → 72°.</p>
+  </div>
+  <div class="ficha c-cia">
+    <h3>Ler um gráfico</h3>
+    <p>Confira sempre: <b>título</b> (do que fala), <b>fonte</b> (quem coletou → confiabilidade), <b>eixos</b> e <b>escala</b>.</p>
+    <p>Tipos: colunas/barras, setores, linhas, pictograma.</p>
+    <p class="ex">Sem fonte clara = alerta: o dado pode não ser confiável.</p>
+  </div>
+</div>
+
+<h2 class="sec">🎡 Circunferência: ângulos<small>Vire as fichas para ver a regra do verso.</small></h2>
+<div class="grid" id="flips"></div>
+
+<h2 class="sec">🟦 Quadriláteros na circunferência</h2>
+<div class="grid">
+  <div class="ficha c-ros">
+    <h3>Inscritível (vértices na circunferência)</h3>
+    <div class="formula">ângulos opostos <b>somam 180°</b></div>
+    <p>Os 4 <b>vértices</b> estão sobre a circunferência.</p>
+    <p class="ex">Ex.: um ângulo 100° → o oposto é 80°.</p>
+  </div>
+  <div class="ficha c-ros">
+    <h3>Circunscritível (lados tangentes)</h3>
+    <div class="formula">Pitot: <b>AB + CD = BC + AD</b></div>
+    <p>Os 4 <b>lados</b> são tangentes à circunferência.</p>
+    <p class="ex">Ex.: AB=7, BC=5, CD=6 → 7+6 = 5+AD → AD = 8.</p>
+  </div>
+</div>
+
+<h2 class="sec">💡 Dicas de prova</h2>
+<div class="postits">
+  <div class="postit"><b>Decore os fatores.</b> 1,05=+5%; 1,20=+20%; 0,90=−10%; 0,75=−25%. Deixa a conta de porcentagem muito mais rápida.</div>
+  <div class="postit"><b>Composto tem expoente.</b> Se o tempo está "lá em cima" (potência), é composto. Se multiplica, é simples.</div>
+  <div class="postit"><b>Setor = fr × 360°.</b> O círculo inteiro tem 360°, não 180°. 100% dos dados = 360°.</div>
+  <div class="postit"><b>Central = arco; inscrito = metade.</b> Pense: "inscrito é menor, por isso é a metade".</div>
+  <div class="postit"><b>Inscrito vs circunscrito.</b> inscrIto = vértIces dentro → ângulos (180°). CircunscrIto = lados tangentes → lados (Pitot).</div>
+  <div class="postit"><b>Triângulo no diâmetro = 90°.</b> Lado no diâmetro → arco de 180° → inscrito de 90°. Sempre retângulo.</div>
+</div>
+
+<div class="alerta"><b>⚠️ Pegadinha que mais derruba:</b> aumentos e descontos sucessivos <b>não se somam</b>. Subir 20% e depois descer 20% NÃO volta ao preço original: ×1,20 × 0,80 = 0,96, ou seja, você termina com 96% do valor (perde 4%).</div>
+
+<h2 class="sec">📖 Glossário</h2>
+<dl class="glos">
+  <dt>Capital (C)</dt><dd>o valor inicial de uma aplicação ou dívida.</dd>
+  <dt>Montante (M)</dt><dd>o total no fim: capital + juros (M = C + J).</dd>
+  <dt>Taxa (i)</dt><dd>quanto rende por período, escrita como número (2% = 0,02).</dd>
+  <dt>População e amostra</dt><dd>população é o conjunto inteiro estudado; amostra é uma parte dela, escolhida para representar o todo.</dd>
+  <dt>Frequência absoluta (fi)</dt><dd>quantas vezes um dado aparece.</dd>
+  <dt>Frequência relativa (fr)</dt><dd>a parte do total que o dado representa: fr = fi / n.</dd>
+  <dt>Arco</dt><dd>um "pedaço" da circunferência; sua medida em graus é igual à do ângulo central correspondente.</dd>
+  <dt>Ângulo central</dt><dd>ângulo com vértice no centro; mede o mesmo que o arco.</dd>
+  <dt>Ângulo inscrito</dt><dd>ângulo com vértice sobre a circunferência; mede a metade do arco.</dd>
+  <dt>Arco capaz</dt><dd>todos os pontos que enxergam um segmento sob o mesmo ângulo.</dd>
+  <dt>Radiano</dt><dd>outra unidade de ângulo: 1 rad ≈ 57,3°.</dd>
+  <dt>Teorema de Pitot</dt><dd>num quadrilátero circunscrito, a soma de dois lados opostos é igual à dos outros dois.</dd>
+</dl>
+
+<div class="vamos">
+  <a href="simulado.html" id="btVamos">📝 Agora é a prova! Ir para o Simulado →</a>
+</div>
+
+<div class="rodape">
+  <span>Próximo material da sequência →</span>
+  <a href="simulado.html">📝 Ir para o Simulado</a>
+</div>
+
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h3 id="mTit">Aviso</h3>
+    <p id="mTxt"></p>
+    <div class="acoes"><button class="principal" id="mSim">Entendi</button></div>
+  </div>
+</div>
+
+<script>
+var FLIPS=[
+ {n:"Ângulo central",f:"Vértice no centro da circunferência.",v:"Mede o <b>mesmo</b> que o arco correspondente. Ex.: arco de 80° → ângulo central de 80°."},
+ {n:"Ângulo inscrito",f:"Vértice sobre a circunferência, lados cortando-a.",v:"Mede a <b>metade</b> do arco (metade do ângulo central). Ex.: arco de 80° → inscrito de 40°."},
+ {n:"Do arco para o inscrito",f:"Arco de 100°. Quanto vale o inscrito?",v:"Inscrito = arco ÷ 2 = <b>50°</b>. O central seria 100°."},
+ {n:"Do inscrito para o arco",f:"Ângulo inscrito de 60°. Qual o arco?",v:"Arco = inscrito × 2 = <b>120°</b>."},
+ {n:"Triângulo no diâmetro",f:"Um lado do triângulo é o diâmetro. Que ângulo aparece?",v:"O vértice oposto enxerga um arco de 180°, então o ângulo inscrito é <b>90°</b> — triângulo retângulo."},
+ {n:"Semicircunferência",f:"Por que o arco do diâmetro é 180°?",v:"O diâmetro divide a circunferência (360°) em <b>duas metades</b> de 180° cada."}
+];
+
+var KEY='mat9_mensal2_resumo_v1';
+var mem={};
+function ler(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return mem}}
+function gravar(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){mem=s}}
+var S=ler(); if(!S.virados)S.virados={}; if(S.rolagem===undefined)S.rolagem=0;
+function carimbo(){
+  var d=new Date();
+  var f=d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  S.quando=f; gravar(S);
+  document.getElementById('status').textContent='💾 Salvo — leitura do resumo: '+S.rolagem+'% · última vez: '+f;
+}
+function aviso(t,msg){
+  document.getElementById('mTit').textContent=t;
+  document.getElementById('mTxt').textContent=msg;
+  var ov=document.getElementById('overlay'); ov.classList.add('on');
+  document.getElementById('mSim').onclick=function(){ov.classList.remove('on');};
+}
+function flips(){
+  var alvo=document.getElementById('flips'); alvo.innerHTML='';
+  FLIPS.forEach(function(c,i){
+    var d=document.createElement('div'); d.className='flip'+(S.virados[i]?' on':'');
+    d.innerHTML='<div class="in">'+
+      '<div class="face frente"><p class="tag">Regra</p><h3>'+c.n+'</h3><p class="fr">'+c.f+'</p><p class="vira">clique para virar ↻</p></div>'+
+      '<div class="face verso"><p>'+c.v+'</p><p class="vira">clique para voltar ↻</p></div></div>';
+    d.onclick=function(){d.classList.toggle('on');S.virados[i]=d.classList.contains('on');carimbo();};
+    alvo.appendChild(d);
+  });
+}
+function medeRolagem(){
+  var h=document.documentElement.scrollHeight-window.innerHeight;
+  var p=h>0?Math.round((window.scrollY/h)*100):100;
+  if(p>100)p=100; if(p<0)p=0;
+  if(p>S.rolagem){S.rolagem=p;carimbo();}
+}
+document.getElementById('btExportar').onclick=function(){
+  var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='resumo-matematica9-mensal2.json'; a.click();
+};
+document.getElementById('btImportar').onclick=function(){document.getElementById('arquivo').click();};
+document.getElementById('arquivo').onchange=function(e){
+  var f=e.target.files[0]; if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{var d=JSON.parse(r.result);S=d;if(!S.virados)S.virados={};if(S.rolagem===undefined)S.rolagem=0;
+      gravar(S);flips();carimbo();aviso('Pronto','Seu progresso foi importado com sucesso.');}
+    catch(err){aviso('Ops','Não consegui ler esse arquivo. Ele precisa ser o .json exportado por este material.');}
+  };
+  r.readAsText(f);
+};
+document.getElementById('btZerar').onclick=function(){
+  S={virados:{},rolagem:0}; gravar(S); flips(); carimbo();
+  aviso('Pronto','As fichas viradas e a marca de leitura deste Resumo foram zeradas.');
+};
+window.addEventListener('scroll',medeRolagem,{passive:true});
+flips(); carimbo(); medeRolagem();
+</script>
+</body>
+</html>
